@@ -9,7 +9,7 @@ import WhyChooseUsSection from "@/components/WhyChooseUsSection";
 
 export default function Home() {
   return (
-    <main className="bg-[#0a0a0f] text-zinc-100">
+    <main className="overflow-x-hidden bg-[#0a0a0f] text-zinc-100">
       <HeaderNav />
       <HeroSection />
       <TrustBar />
