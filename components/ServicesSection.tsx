@@ -85,7 +85,7 @@ const ServicesSection = () => {
 
   return (
     <section id="services" className="border-b border-white/10 bg-[#f4f7fb] text-[#0c1220]">
-      <div className="py-20 pl-6 pr-6 md:py-28 md:pr-0 md:pl-[max(1.5rem,calc((100vw-72rem)/2+1.5rem))]">
+      <div className="mx-auto max-w-6xl px-6 pt-20 md:pt-28">
         <p className="text-xs uppercase tracking-[0.2em] text-[#4f6287]">Core Services</p>
         <h2 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">
           What We Do
@@ -127,8 +127,10 @@ const ServicesSection = () => {
             </button>
           </div>
         </div>
+      </div>
 
-        <div className="mt-8 overflow-hidden">
+      <div className="mt-8 overflow-hidden pb-20 pl-6 md:pb-28 md:pl-[max(1.5rem,calc((100vw-72rem)/2+1.5rem))]">
+        <div className="overflow-hidden">
           <div
             className="flex transition-transform duration-500 ease-out"
             style={{ transform: `translateX(-${activePage * 100}%)` }}
