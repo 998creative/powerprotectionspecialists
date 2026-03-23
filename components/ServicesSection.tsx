@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 type ServiceItem = {
   title: string;
   description: string;
+  imageSrc: string;
+  imageAlt: string;
 };
 
 const services: ServiceItem[] = [
@@ -12,31 +14,43 @@ const services: ServiceItem[] = [
     title: "UPS Systems",
     description:
       "Supply and installation of uninterruptible power supply systems from all major manufacturers, sized for your load requirements.",
+    imageSrc: "/service-images/ups-systems.jpg",
+    imageAlt: "Rows of server racks in a data centre environment",
   },
   {
     title: "Batteries & Replacements",
     description:
       "Battery supply, testing and replacement for existing UPS systems. Health checks available for any installed system.",
+    imageSrc: "/service-images/batteries-replacements.jpg",
+    imageAlt: "Industrial battery storage setup for backup power applications",
   },
   {
     title: "Standby Generators",
     description:
       "Generator supply, installation and commissioning for sites that need extended backup power.",
+    imageSrc: "/service-images/standby-generators.jpg",
+    imageAlt: "Large standby generator unit installed in an industrial setting",
   },
   {
     title: "Maintenance & Support",
     description:
       "Tailored maintenance contracts with guaranteed response times, 24-hour monitoring and scheduled on-site visits.",
+    imageSrc: "/service-images/maintenance-support.jpg",
+    imageAlt: "Engineer performing maintenance checks on technical equipment",
   },
   {
     title: "Site Surveys",
     description:
       "Free site surveys to assess your power protection requirements, space, logistics and installation needs.",
+    imageSrc: "/service-images/site-surveys.jpg",
+    imageAlt: "Engineer conducting a site survey and inspection with plans",
   },
   {
     title: "Full Installation",
     description:
       "Factory-trained engineers carry out full electrical installation, commissioning and certification to NICEIC standards.",
+    imageSrc: "/service-images/full-installation.jpg",
+    imageAlt: "Electrician carrying out professional electrical installation work",
   },
 ];
 
@@ -126,19 +140,19 @@ const ServicesSection = () => {
             {services.map((service) => (
               <article
                 key={service.title}
-                className="group relative shrink-0 px-3 pb-6"
+                className="group relative flex h-full shrink-0 flex-col px-3 pb-6"
                 style={{ flexBasis: `${100 / cardsPerView}%` }}
               >
                 <div className="overflow-hidden rounded-md border border-[#d8e0f0] bg-[#dde5f4]">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src="/service-card-placeholder.svg"
-                    alt={`Placeholder image for ${service.title}`}
+                    src={service.imageSrc}
+                    alt={service.imageAlt}
                     className="h-72 w-full object-cover"
                   />
                 </div>
 
-                <div className="relative z-10 mx-6 -mt-20 border border-[#d9e1f2] bg-[#f7f9fd] p-6 shadow-[0_14px_35px_rgba(15,25,45,0.13)] transition-all group-hover:-translate-y-1 group-hover:shadow-[0_20px_45px_rgba(0,102,255,0.18)]">
+                <div className="relative z-10 mx-6 -mt-20 flex min-h-[28rem] flex-1 flex-col border border-[#d9e1f2] bg-[#f7f9fd] p-6 shadow-[0_14px_35px_rgba(15,25,45,0.13)] transition-all group-hover:-translate-y-1 group-hover:shadow-[0_20px_45px_rgba(0,102,255,0.18)]">
                   <h3 className="text-[2rem] leading-tight font-semibold tracking-tight text-[#0b1324]">
                     {service.title}
                   </h3>
@@ -147,7 +161,7 @@ const ServicesSection = () => {
                   </p>
                   <a
                     href="#contact"
-                    className="mt-6 inline-flex items-center justify-center bg-[#0066ff] px-5 py-3 text-base font-semibold text-white transition-colors hover:bg-[#0052cc]"
+                    className="mt-auto inline-flex items-center justify-center self-start bg-[#0066ff] px-5 py-3 text-base font-semibold text-white transition-colors hover:bg-[#0052cc]"
                   >
                     Find out more
                   </a>
