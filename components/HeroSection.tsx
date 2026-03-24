@@ -35,7 +35,7 @@ const HeroSection = () => {
             href="#contact"
             className="inline-flex items-center justify-center rounded-md bg-white px-6 py-3 text-base font-semibold text-[#0a0a0f] transition-colors hover:bg-zinc-200"
           >
-            Get a Free Quote
+            Book a Free Site Survey
           </a>
           <a
             href="#services"
