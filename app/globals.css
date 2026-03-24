@@ -3,10 +3,10 @@
 :root {
   --background: #0a0a0f;
   --foreground: #f5f5f5;
-  --muted: #9ca3af;
-  --panel: #11131a;
-  --panel-alt: #0f1218;
-  --panel-border: #222734;
+  --muted: #c8c8d0;
+  --panel: #13131f;
+  --panel-alt: #111118;
+  --panel-border: #1e1e2e;
   --accent: #0066ff;
 }
 
@@ -37,4 +37,26 @@ h4,
 h5,
 h6 {
   font-family: var(--font-heading), sans-serif;
+}
+
+@keyframes logo-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.logo-marquee-track {
+  animation: logo-marquee 84s linear infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-marquee-track {
+    animation: none;
+    transform: translateX(0);
+  }
 }

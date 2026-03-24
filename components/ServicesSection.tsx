@@ -11,42 +11,42 @@ type ServiceItem = {
 
 const services: ServiceItem[] = [
   {
-    title: "UPS Systems",
+    title: "UPS System Installation & Supply",
     description:
-      "Supply and installation of uninterruptible power supply systems from all major manufacturers, sized for your load requirements.",
+      "Supply and installation of uninterruptible power supply (UPS) systems across the UK, from all major manufacturers, sized and commissioned for your load requirements.",
     imageSrc: "/service-images/ups-systems.jpg",
     imageAlt: "Rows of server racks in a data centre environment",
   },
   {
-    title: "Batteries & Replacements",
+    title: "UPS Battery Replacement & Supply",
     description:
       "Battery supply, testing and replacement for existing UPS systems. Health checks available for any installed system.",
     imageSrc: "/service-images/batteries-replacements.jpg",
     imageAlt: "Industrial battery storage setup for backup power applications",
   },
   {
-    title: "Standby Generators",
+    title: "Standby Generator Installation",
     description:
-      "Generator supply, installation and commissioning for sites that need extended backup power.",
+      "Generator supply, installation and commissioning across the UK for sites requiring extended backup power beyond UPS runtime.",
     imageSrc: "/service-images/standby-generators.jpg",
     imageAlt: "Large standby generator unit installed in an industrial setting",
   },
   {
-    title: "Maintenance & Support",
+    title: "UPS Maintenance & Support",
     description:
       "Tailored maintenance contracts with guaranteed response times, 24-hour monitoring and scheduled on-site visits.",
     imageSrc: "/service-images/maintenance-support.jpg",
     imageAlt: "Engineer performing maintenance checks on technical equipment",
   },
   {
-    title: "Site Surveys",
+    title: "Free Power Protection Site Surveys",
     description:
       "Free site surveys to assess your power protection requirements, space, logistics and installation needs.",
     imageSrc: "/service-images/site-surveys.jpg",
     imageAlt: "Engineer conducting a site survey and inspection with plans",
   },
   {
-    title: "Full Installation",
+    title: "Full Electrical Installation & Commissioning",
     description:
       "Factory-trained engineers carry out full electrical installation, commissioning and certification to NICEIC standards.",
     imageSrc: "/service-images/full-installation.jpg",
@@ -88,16 +88,22 @@ const ServicesSection = () => {
   const progressWidth = `${((activeStep + 1) / (maxStep + 1)) * 100}%`;
 
   return (
-    <section id="services" className="border-b border-white/10 bg-[#f4f7fb] text-[#0c1220]">
-      <div className="mx-auto max-w-6xl px-6 pt-20 md:pt-28">
-        <p className="text-xs uppercase tracking-[0.2em] text-[#4f6287]">Core Services</p>
+    <section id="services" className="border-b border-[#d9e1f1] bg-[#f5f5f7] text-[#0c1220]">
+      <div className="mx-auto max-w-[1252px] px-6 pt-20 md:pt-28">
+        <p className="text-xs uppercase tracking-[0.2em] text-[#0066ff]">Core Services</p>
         <h2 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">
-          What We Do
+          UPS &amp; Power Protection Services
         </h2>
-        <p className="mt-5 max-w-3xl text-lg text-[#3f4e6e]">
-          Practical, end-to-end power protection services designed around your uptime
-          targets and compliance requirements.
+        <p className="mt-5 max-w-3xl text-lg text-[#374867]">
+          Practical, end-to-end UPS installation and power protection services
+          designed around your uptime targets and UK compliance requirements.
         </p>
+        <a
+          href="#contact"
+          className="mt-7 inline-flex items-center justify-center bg-[#0066ff] px-5 py-3 text-base font-semibold text-white transition-colors hover:bg-[#0052cc]"
+        >
+          Book a Free Site Survey
+        </a>
 
         <div className="mt-11 flex items-center gap-6">
           <div className="h-1.5 flex-1 rounded-full bg-[#d7deeb]">
@@ -112,7 +118,7 @@ const ServicesSection = () => {
               aria-label="Previous services"
               disabled={activeStep === 0}
               onClick={() => setCurrentStep((step) => Math.max(0, step - 1))}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#0f1f3f]/45 text-[#0f1f3f] transition-colors hover:bg-[#e5edff] disabled:border-[#c3ccdc] disabled:text-[#c3ccdc]"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#1e2a45]/45 text-[#1e2a45] transition-colors hover:bg-[#dbe9ff] disabled:border-[#c3ccdc] disabled:text-[#c3ccdc]"
             >
               &#8592;
             </button>
@@ -121,7 +127,7 @@ const ServicesSection = () => {
               aria-label="Next services"
               disabled={activeStep === maxStep}
               onClick={() => setCurrentStep((step) => Math.min(maxStep, step + 1))}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#0f1f3f] text-[#0f1f3f] transition-colors hover:bg-[#e5edff] disabled:border-[#c3ccdc] disabled:text-[#c3ccdc]"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#1e2a45] text-[#1e2a45] transition-colors hover:bg-[#dbe9ff] disabled:border-[#c3ccdc] disabled:text-[#c3ccdc]"
             >
               &#8594;
             </button>
@@ -143,7 +149,7 @@ const ServicesSection = () => {
                 className="group relative flex h-full shrink-0 flex-col px-3 pb-6"
                 style={{ flexBasis: `${100 / cardsPerView}%` }}
               >
-                <div className="overflow-hidden rounded-md border border-[#d8e0f0] bg-[#dde5f4]">
+                <div className="overflow-hidden rounded-md border border-[#1e1e2e] bg-[#13131f]">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={service.imageSrc}
@@ -152,11 +158,11 @@ const ServicesSection = () => {
                   />
                 </div>
 
-                <div className="relative z-10 mx-6 -mt-20 flex min-h-[28rem] flex-1 flex-col border border-[#d9e1f2] bg-[#f7f9fd] p-6 shadow-[0_14px_35px_rgba(15,25,45,0.13)] transition-all group-hover:-translate-y-1 group-hover:shadow-[0_20px_45px_rgba(0,102,255,0.18)]">
-                  <h3 className="text-[2rem] leading-tight font-semibold tracking-tight text-[#0b1324]">
+                <div className="relative z-10 mx-6 -mt-20 flex min-h-[28rem] flex-1 flex-col border border-[#1e1e2e] bg-[#13131f] p-6 shadow-[0_14px_35px_rgba(5,8,18,0.35)] transition-all group-hover:-translate-y-1 group-hover:border-[#0066ff] group-hover:shadow-[0_0_12px_rgba(0,102,255,0.15)]">
+                  <h3 className="text-[2rem] leading-tight font-semibold tracking-tight text-white">
                     {service.title}
                   </h3>
-                  <p className="mt-3 text-lg leading-relaxed text-[#4c5f84]">
+                  <p className="mt-3 text-lg leading-relaxed text-[#c8c8d0]">
                     {service.description}
                   </p>
                   <a
