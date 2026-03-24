@@ -7,10 +7,10 @@ const navItems = [
 
 const HeaderNav = () => {
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#090b12]/85 backdrop-blur-sm">
-      <div className="mx-auto flex h-20 w-full max-w-6xl items-center justify-between px-6">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#0a0a0f]/85 backdrop-blur-sm">
+      <div className="mx-auto flex h-20 w-full max-w-[1252px] items-center justify-between px-6">
         <a href="#" className="text-base font-semibold tracking-[0.08em] text-white">
-          POWER PROTECTION EXPERTS
+          POWER PROTECTION SERVICES
         </a>
 
         <nav className="hidden items-center gap-7 lg:flex">
@@ -18,7 +18,7 @@ const HeaderNav = () => {
             <a
               key={item.label}
               href={item.href}
-              className="text-sm font-medium tracking-wide text-zinc-300 transition-colors hover:text-white"
+              className="text-sm font-medium tracking-wide text-[#c8c8d0] transition-colors hover:text-[#0066ff]"
             >
               {item.label}
             </a>
