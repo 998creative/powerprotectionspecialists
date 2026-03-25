@@ -86,10 +86,10 @@ const TestimonialsSection = () => {
   return (
     <section
       id="testimonials"
-      className="overflow-hidden border-b border-[#d9e1f1] bg-[#f5f5f7] text-[#0c1220]"
+      className="overflow-hidden border-b border-[#d9e1f1] bg-[#f4f8fe] text-[#0c1220]"
     >
       <div className="mx-auto max-w-[1252px] px-6 py-20 md:py-28">
-        <p className="text-xs uppercase tracking-[0.2em] text-[#0066ff]">
+        <p className="text-xs uppercase tracking-[0.2em] text-[#4f6287]">
           Trusted by many for over 25 years
         </p>
         <h2 className="mt-3 text-4xl font-semibold tracking-tight text-[#0b1324] sm:text-5xl">
@@ -109,7 +109,7 @@ const TestimonialsSection = () => {
               aria-label="Previous testimonials"
               disabled={activeStep === 0}
               onClick={() => setCurrentStep((step) => Math.max(0, step - 1))}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#1e2a45]/45 text-[#1e2a45] transition-colors hover:bg-[#dbe9ff] disabled:border-[#c3ccdc] disabled:text-[#c3ccdc]"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#0f1f3f]/45 text-[#0f1f3f] transition-colors hover:bg-[#e5edff] disabled:border-[#c3ccdc] disabled:text-[#c3ccdc]"
             >
               &#8592;
             </button>
@@ -118,7 +118,7 @@ const TestimonialsSection = () => {
               aria-label="Next testimonials"
               disabled={activeStep === maxStep}
               onClick={() => setCurrentStep((step) => Math.min(maxStep, step + 1))}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#1e2a45] text-[#1e2a45] transition-colors hover:bg-[#dbe9ff] disabled:border-[#c3ccdc] disabled:text-[#c3ccdc]"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#0f1f3f] text-[#0f1f3f] transition-colors hover:bg-[#e5edff] disabled:border-[#c3ccdc] disabled:text-[#c3ccdc]"
             >
               &#8594;
             </button>
