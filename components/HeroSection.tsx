@@ -1,17 +1,25 @@
-import Image from "next/image";
 import TrustBar from "@/components/TrustBar";
 
 const HeroSection = () => {
   return (
     <section className="relative overflow-visible border-b border-white/10 bg-[#0a0a0f]">
       <div className="absolute inset-0 z-0">
-        <Image
-          src="/pps-stock-images/hero-datacenter-brett-4508751.jpg"
-          alt="Server room environment representing critical infrastructure"
-          fill
-          priority
-          className="object-cover object-center"
-        />
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          poster="/pps-stock-images/hero-datacenter-brett-4508751.jpg"
+          aria-hidden="true"
+          className="h-full w-full object-cover object-center"
+        >
+          <source
+            src="/pps-stock-images/pps-hero-vid.mp4"
+            type="video/mp4"
+          />
+          Your browser does not support the video tag.
+        </video>
       </div>
       <div className="pointer-events-none absolute inset-0 z-10 bg-[#05070d]/78" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-44 bg-gradient-to-t from-[#0a0a0f] to-transparent" />
