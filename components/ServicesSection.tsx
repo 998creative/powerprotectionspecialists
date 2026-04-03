@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 type ServiceItem = {
@@ -7,50 +8,57 @@ type ServiceItem = {
   description: string;
   imageSrc: string;
   imageAlt: string;
+  href: string;
 };
 
 const services: ServiceItem[] = [
   {
-    title: "UPS System Installation & Supply",
+    title: "UPS Systems Installation, Supply & Relocation",
     description:
-      "Supply and installation of uninterruptible power supply (UPS) systems across the UK, from all major manufacturers, sized and commissioned for your load requirements.",
+      "Supply, installation and relocation of uninterruptible power supply (UPS) systems across the UK, sized and commissioned for your load requirements.",
     imageSrc: "/pps-stock-images/services-ups.jpg",
     imageAlt: "Rows of server racks in a data centre environment",
+    href: "/services/ups-systems-installation-supply-relocation",
+  },
+  {
+    title: "Standby Generator Installation & Integration",
+    description:
+      "Generator supply, installation and integration for sites requiring extended backup runtime beyond UPS coverage.",
+    imageSrc: "/pps-stock-images/services-standby.jpg",
+    imageAlt: "Critical power infrastructure cabinets in an industrial environment",
+    href: "#contact",
+  },
+  {
+    title: "Commercial Electrical Installation",
+    description:
+      "Factory-trained engineers deliver commercial electrical installation, commissioning and certification to NICEIC standards.",
+    imageSrc: "/pps-stock-images/services-full-installation.jpg",
+    imageAlt: "Modern commercial workspace prepared for technical installation works",
+    href: "#contact",
+  },
+  {
+    title: "UPS Maintenance, Testing & Health Checks",
+    description:
+      "Tailored maintenance plans with UPS testing, battery health checks and scheduled support visits to maintain resilience.",
+    imageSrc: "/pps-stock-images/services-maintenance.jpg",
+    imageAlt: "Technical team collaborating in an office support environment",
+    href: "#contact",
   },
   {
     title: "UPS Battery Replacement & Supply",
     description:
-      "Battery supply, testing and replacement for existing UPS systems. Health checks available for any installed system.",
+      "Battery supply, testing and replacement for existing UPS systems to maintain reliable runtime and system performance.",
     imageSrc: "/pps-stock-images/services-batteries.jpg",
     imageAlt: "Close-up of critical power hardware and infrastructure panels",
+    href: "#contact",
   },
   {
-    title: "Standby Generator Installation",
+    title: "Power Protection Site Surveys & Assessments",
     description:
-      "Generator supply, installation and commissioning across the UK for sites requiring extended backup power beyond UPS runtime.",
-    imageSrc: "/pps-stock-images/services-standby.jpg",
-    imageAlt: "Critical power infrastructure cabinets in an industrial environment",
-  },
-  {
-    title: "UPS Maintenance & Support",
-    description:
-      "Tailored maintenance contracts with guaranteed response times, 24-hour monitoring and scheduled on-site visits.",
-    imageSrc: "/pps-stock-images/services-maintenance.jpg",
-    imageAlt: "Technical team collaborating in an office support environment",
-  },
-  {
-    title: "Free Power Protection Site Surveys",
-    description:
-      "Free site surveys to assess your power protection requirements, space, logistics and installation needs.",
+      "Site surveys and technical assessments to define your power protection requirements, site constraints and implementation approach.",
     imageSrc: "/pps-stock-images/services-site-surveys.jpg",
     imageAlt: "Urban site environment being assessed for infrastructure planning",
-  },
-  {
-    title: "Full Electrical Installation & Commissioning",
-    description:
-      "Factory-trained engineers carry out full electrical installation, commissioning and certification to NICEIC standards.",
-    imageSrc: "/pps-stock-images/services-full-installation.jpg",
-    imageAlt: "Modern commercial workspace prepared for technical installation works",
+    href: "#contact",
   },
 ];
 
@@ -165,12 +173,9 @@ const ServicesSection = () => {
                   <p className="mt-3 text-lg leading-relaxed text-[#4c5f84]">
                     {service.description}
                   </p>
-                  <a
-                    href="#contact"
-                    className="btn-tertiary mt-auto self-start"
-                  >
+                  <Link href={service.href} className="btn-tertiary mt-auto self-start">
                     Find out more
-                  </a>
+                  </Link>
                 </div>
               </article>
             ))}

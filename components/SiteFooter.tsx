@@ -1,22 +1,28 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 const quickLinks = [
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Who We Help", href: "#who-we-help" },
-  { label: "Testimonials", href: "#testimonials" },
-  { label: "Why Us", href: "#why-us" },
-  { label: "Contact", href: "#contact" },
+  { label: "About", href: "/about" },
+  { label: "Services", href: "/#services" },
+  { label: "Who We Help", href: "/who-we-help" },
+  { label: "Testimonials", href: "/#testimonials" },
+  { label: "Why Us", href: "/#why-us" },
+  { label: "Contact", href: "/contact" },
 ];
 
 const serviceLinks = [
-  { label: "UPS System Installation & Supply", href: "#services" },
-  { label: "UPS Battery Replacement & Supply", href: "#services" },
-  { label: "Standby Generator Installation", href: "#services" },
-  { label: "UPS Maintenance & Support", href: "#services" },
+  {
+    label: "UPS Systems Installation, Supply & Relocation",
+    href: "/services/ups-systems-installation-supply-relocation",
+  },
+  { label: "Standby Generator Installation & Integration", href: "/#services" },
+  { label: "Commercial Electrical Installation", href: "/#services" },
+  { label: "UPS Maintenance, Testing & Health Checks", href: "/#services" },
+  { label: "UPS Battery Replacement & Supply", href: "/#services" },
+  { label: "Power Protection Site Surveys & Assessments", href: "/#services" },
 ];
 
 const mapsHref =
@@ -46,9 +52,9 @@ const SiteFooter = () => {
             UK.
           </p>
           <div className="mt-6 hidden md:block">
-            <a href="#contact" className="btn-secondary">
+            <Link href="/contact#contact" className="btn-secondary">
               Book a Free Site Survey
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -58,13 +64,13 @@ const SiteFooter = () => {
           </p>
           <nav className="mt-4 flex flex-col gap-3">
             {quickLinks.map((link) => (
-              <a
+              <Link
                 key={link.label}
                 href={link.href}
                 className="w-fit text-sm text-zinc-300 transition-colors hover:text-white"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </nav>
         </div>
@@ -75,13 +81,13 @@ const SiteFooter = () => {
           </p>
           <div className="mt-4 flex flex-col gap-3">
             {serviceLinks.map((link) => (
-              <a
+              <Link
                 key={link.label}
                 href={link.href}
                 className="w-fit text-sm text-zinc-300 transition-colors hover:text-white"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </div>
         </div>
@@ -177,13 +183,13 @@ const SiteFooter = () => {
             {openSection === "quick-links" ? (
               <nav className="flex flex-col gap-3 border-t border-white/10 px-4 py-3">
                 {quickLinks.map((link) => (
-                  <a
+                  <Link
                     key={link.label}
                     href={link.href}
                     className="w-fit text-sm text-zinc-300 transition-colors hover:text-white"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 ))}
               </nav>
             ) : null}
@@ -209,13 +215,13 @@ const SiteFooter = () => {
             {openSection === "services" ? (
               <div className="flex flex-col gap-3 border-t border-white/10 px-4 py-3">
                 {serviceLinks.map((link) => (
-                  <a
+                  <Link
                     key={link.label}
                     href={link.href}
                     className="w-fit text-sm text-zinc-300 transition-colors hover:text-white"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 ))}
               </div>
             ) : null}
@@ -306,9 +312,9 @@ const SiteFooter = () => {
             ) : null}
           </div>
 
-          <a href="#contact" className="btn-secondary mt-4 w-full">
+          <Link href="/contact#contact" className="btn-secondary mt-4 w-full">
             Book a Free Site Survey
-          </a>
+          </Link>
         </div>
       </div>
 

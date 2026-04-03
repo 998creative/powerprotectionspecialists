@@ -5,12 +5,12 @@ import { Fragment, FormEvent, useState } from "react";
 type Step = 1 | 2 | 3;
 
 const serviceOptions = [
-  "UPS System Installation & Supply",
+  "UPS Systems Installation, Supply & Relocation",
+  "Standby Generator Installation & Integration",
+  "Commercial Electrical Installation",
+  "UPS Maintenance, Testing & Health Checks",
   "UPS Battery Replacement & Supply",
-  "Standby Generator Installation",
-  "UPS Maintenance & Support",
-  "Free Power Protection Site Surveys",
-  "Full Electrical Installation & Commissioning",
+  "Power Protection Site Surveys & Assessments",
   "Other",
 ];
 
@@ -113,7 +113,7 @@ const ContactSection = () => {
     <section id="contact" className="relative overflow-hidden bg-[#EEF3FB]">
       <div className="pointer-events-none absolute right-[-14rem] top-20 h-96 w-96 rounded-full border border-[#d3dced]" />
       <div className="mx-auto grid max-w-[1252px] gap-12 px-6 py-20 md:py-28 lg:grid-cols-[0.9fr_1.1fr]">
-        <div>
+        <div className="lg:col-start-1 lg:row-start-1">
           <h2 className="text-4xl font-semibold tracking-tight text-[#0b1324] sm:text-5xl">
             Get a Free UPS Quote
           </h2>
@@ -122,78 +122,11 @@ const ContactSection = () => {
             requirements and we&apos;ll respond within one business day with
             honest, unbiased advice.
           </p>
-          <div className="mt-8 space-y-4 rounded-2xl border border-[#d6dff0] bg-[#f8fbff] p-7">
-            <p className="text-sm uppercase tracking-[0.18em] text-[#4f6287]">
-              Direct Contact
-            </p>
-            <a
-              href="mailto:contact@powerprotectionservices.co.uk"
-              className="flex items-center gap-2 text-base text-[#0b1324] transition-colors hover:text-[#0066ff]"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                aria-hidden="true"
-                className="h-4 w-4 shrink-0 stroke-current"
-              >
-                <rect x="3.5" y="5.5" width="17" height="13" rx="2" strokeWidth="1.8" />
-                <path d="M4.5 7.5 12 13l7.5-5.5" strokeWidth="1.8" strokeLinecap="round" />
-              </svg>
-              <span>contact@powerprotectionservices.co.uk</span>
-            </a>
-            <a
-              href="tel:01488685207"
-              className="flex items-center gap-2 text-base text-[#0b1324] transition-colors hover:text-[#0066ff]"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                aria-hidden="true"
-                className="h-4 w-4 shrink-0 stroke-current"
-              >
-                <path
-                  d="M7.8 4.8 10.4 7c.6.5.8 1.4.4 2l-1.1 1.8c1 2 2.7 3.7 4.7 4.7l1.8-1.1c.7-.4 1.5-.2 2 .4l2.2 2.6c.6.7.5 1.8-.3 2.3-1 .7-2.2 1.1-3.4 1-2.4-.1-5.5-1.4-8.3-4.2S4.3 13.6 4.2 11.2c0-1.2.3-2.4 1-3.4.6-.8 1.6-.9 2.3-.3Z"
-                  strokeWidth="1.8"
-                  strokeLinejoin="round"
-                />
-              </svg>
-              <span>01488 685207</span>
-            </a>
-            <a
-              href={mapsHref}
-              target="_blank"
-              rel="noreferrer noopener"
-              className="flex items-start gap-2 text-base text-[#0b1324] transition-colors hover:text-[#0066ff]"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                aria-hidden="true"
-                className="mt-1 h-4 w-4 shrink-0 stroke-current"
-              >
-                <path
-                  d="M12 21s-5.5-4.7-5.5-9.3a5.5 5.5 0 1 1 11 0C17.5 16.3 12 21 12 21Z"
-                  strokeWidth="1.8"
-                  strokeLinejoin="round"
-                />
-                <circle cx="12" cy="11.7" r="2.1" strokeWidth="1.8" />
-              </svg>
-              <span className="leading-relaxed">
-                Power Protection Services Ltd
-                <br />
-                Unit 2 Neates Yard
-                <br />
-                Hungerford
-                <br />
-                Berkshire RG17 0NB
-              </span>
-            </a>
-          </div>
         </div>
 
         <form
           onSubmit={handleSubmit}
-          className="rounded-2xl border border-[#d6dff0] bg-[#f8fbff] p-6 sm:p-8"
+          className="rounded-2xl border border-[#d6dff0] bg-[#f8fbff] p-6 sm:p-8 lg:col-start-2 lg:row-span-2 lg:row-start-1"
         >
           {!submitted ? (
             <>
@@ -439,6 +372,74 @@ const ContactSection = () => {
             </div>
           )}
         </form>
+
+        <div className="space-y-4 rounded-2xl border border-[#d6dff0] bg-[#f8fbff] p-7 lg:col-start-1 lg:row-start-2">
+          <p className="text-sm uppercase tracking-[0.18em] text-[#4f6287]">
+            Direct Contact
+          </p>
+          <a
+            href="mailto:contact@powerprotectionservices.co.uk"
+            className="flex items-center gap-2 text-base text-[#0b1324] transition-colors hover:text-[#0066ff]"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+              className="h-4 w-4 shrink-0 stroke-current"
+            >
+              <rect x="3.5" y="5.5" width="17" height="13" rx="2" strokeWidth="1.8" />
+              <path d="M4.5 7.5 12 13l7.5-5.5" strokeWidth="1.8" strokeLinecap="round" />
+            </svg>
+            <span>contact@powerprotectionservices.co.uk</span>
+          </a>
+          <a
+            href="tel:01488685207"
+            className="flex items-center gap-2 text-base text-[#0b1324] transition-colors hover:text-[#0066ff]"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+              className="h-4 w-4 shrink-0 stroke-current"
+            >
+              <path
+                d="M7.8 4.8 10.4 7c.6.5.8 1.4.4 2l-1.1 1.8c1 2 2.7 3.7 4.7 4.7l1.8-1.1c.7-.4 1.5-.2 2 .4l2.2 2.6c.6.7.5 1.8-.3 2.3-1 .7-2.2 1.1-3.4 1-2.4-.1-5.5-1.4-8.3-4.2S4.3 13.6 4.2 11.2c0-1.2.3-2.4 1-3.4.6-.8 1.6-.9 2.3-.3Z"
+                strokeWidth="1.8"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <span>01488 685207</span>
+          </a>
+          <a
+            href={mapsHref}
+            target="_blank"
+            rel="noreferrer noopener"
+            className="flex items-start gap-2 text-base text-[#0b1324] transition-colors hover:text-[#0066ff]"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+              className="mt-1 h-4 w-4 shrink-0 stroke-current"
+            >
+              <path
+                d="M12 21s-5.5-4.7-5.5-9.3a5.5 5.5 0 1 1 11 0C17.5 16.3 12 21 12 21Z"
+                strokeWidth="1.8"
+                strokeLinejoin="round"
+              />
+              <circle cx="12" cy="11.7" r="2.1" strokeWidth="1.8" />
+            </svg>
+            <span className="leading-relaxed">
+              Power Protection Services Ltd
+              <br />
+              Unit 2 Neates Yard
+              <br />
+              Hungerford
+              <br />
+              Berkshire RG17 0NB
+            </span>
+          </a>
+        </div>
       </div>
     </section>
   );

@@ -1,49 +1,62 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 const navItems = [
-  { label: "About Us", href: "#about" },
-  { label: "Who We Help", href: "#who-we-help" },
+  { label: "About Us", href: "/about" },
+  { label: "Who We Help", href: "/who-we-help" },
 ];
 
 const serviceCards = [
   {
-    title: "UPS System Installation & Supply",
+    title: "UPS Systems Installation, Supply & Relocation",
+    description:
+      "Independent UPS supply, installation and relocation tailored to your load profile.",
     imageSrc: "/pps-stock-images/services-ups.jpg",
     icon: "ups",
-    href: "#services",
+    href: "/services/ups-systems-installation-supply-relocation",
+  },
+  {
+    title: "Standby Generator Installation & Integration",
+    description:
+      "Generator installation and integration for longer backup runtime and site resilience.",
+    imageSrc: "/pps-stock-images/services-standby.jpg",
+    icon: "generator",
+    href: "/#services",
+  },
+  {
+    title: "Commercial Electrical Installation",
+    description:
+      "Commercial electrical installation and commissioning delivered to required standards.",
+    imageSrc: "/pps-stock-images/services-full-installation.jpg",
+    icon: "installation",
+    href: "/#services",
+  },
+  {
+    title: "UPS Maintenance, Testing & Health Checks",
+    description:
+      "Planned maintenance, testing and health checks to keep systems dependable.",
+    imageSrc: "/pps-stock-images/services-maintenance.jpg",
+    icon: "maintenance",
+    href: "/#services",
   },
   {
     title: "UPS Battery Replacement & Supply",
+    description:
+      "Battery testing, replacement and supply to maintain UPS runtime performance.",
     imageSrc: "/pps-stock-images/services-batteries.jpg",
     icon: "battery",
-    href: "#services",
+    href: "/#services",
   },
   {
-    title: "Standby Generator Installation",
-    imageSrc: "/pps-stock-images/services-standby.jpg",
-    icon: "generator",
-    href: "#services",
-  },
-  {
-    title: "UPS Maintenance & Support",
-    imageSrc: "/pps-stock-images/services-maintenance.jpg",
-    icon: "maintenance",
-    href: "#services",
-  },
-  {
-    title: "Free Power Protection Site Surveys",
+    title: "Power Protection Site Surveys & Assessments",
+    description:
+      "Site surveys and technical assessments to define the right protection strategy.",
     imageSrc: "/pps-stock-images/services-site-surveys.jpg",
     icon: "survey",
-    href: "#services",
-  },
-  {
-    title: "Full Electrical Installation & Commissioning",
-    imageSrc: "/pps-stock-images/services-full-installation.jpg",
-    icon: "installation",
-    href: "#services",
+    href: "/#services",
   },
 ];
 
@@ -150,8 +163,8 @@ const HeaderNav = () => {
 
       <header className="sticky inset-x-0 top-0 z-[60] border-b border-white/10 bg-[#090b12]">
         <div className="mx-auto flex h-20 w-full max-w-[1252px] items-center justify-between px-6">
-          <a
-            href="#"
+          <Link
+            href="/"
             className="inline-flex shrink-0 items-center gap-3"
             onClick={closeMenu}
           >
@@ -166,7 +179,7 @@ const HeaderNav = () => {
             <span className="hidden whitespace-nowrap text-sm font-semibold tracking-[0.08em] text-white sm:inline">
               Power Protection Services
             </span>
-          </a>
+          </Link>
 
           <nav className="relative hidden items-center gap-8 lg:flex">
             <div
@@ -205,17 +218,17 @@ const HeaderNav = () => {
                       <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">
                         Services
                       </p>
-                      <a
-                        href="#services"
+                      <Link
+                        href="/#services"
                         onClick={closeMenu}
                         className="text-xs font-semibold uppercase tracking-[0.14em] text-[#0066ff] transition-colors hover:text-white"
                       >
                         View all
-                      </a>
+                      </Link>
                     </div>
                     <div className="grid grid-cols-3 gap-4">
                       {serviceCards.map((service) => (
-                        <a
+                        <Link
                           key={service.title}
                           href={service.href}
                           onClick={closeMenu}
@@ -229,14 +242,22 @@ const HeaderNav = () => {
                               className="object-cover transition-transform duration-500 group-hover:scale-105"
                             />
                             <div className="pointer-events-none absolute inset-0 bg-[#020611]/72" />
-                            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 px-4 text-center">
+                            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 px-4 text-center transition-all duration-300 group-hover:-translate-y-2 group-hover:opacity-0 group-focus-visible:-translate-y-2 group-focus-visible:opacity-0">
                               <ServiceIcon icon={service.icon} />
                               <h3 className="text-sm font-semibold leading-snug text-zinc-100">
                                 {service.title}
                               </h3>
                             </div>
+                            <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 px-5 text-center opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100">
+                              <p className="max-w-[15.5rem] text-sm leading-relaxed text-zinc-100">
+                                {service.description}
+                              </p>
+                              <span className="inline-flex items-center rounded-md border border-white/35 bg-white/10 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-white transition-colors duration-200 hover:border-[#0066ff] hover:bg-[#0066ff] group-hover:border-[#0066ff] group-hover:bg-[#0066ff]">
+                                Learn More
+                              </span>
+                            </div>
                           </div>
-                        </a>
+                        </Link>
                       ))}
                     </div>
                   </div>
@@ -245,23 +266,23 @@ const HeaderNav = () => {
             </div>
 
             {navItems.map((item) => (
-              <a
+              <Link
                 key={item.label}
                 href={item.href}
                 className="text-sm font-medium tracking-wide text-zinc-300 transition-colors hover:text-white"
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
           </nav>
 
           <div className="hidden items-center gap-3 lg:flex">
-            <a href="#contact" className="btn-secondary">
+            <Link href="/contact" className="btn-secondary">
               Contact
-            </a>
-            <a href="#contact" className="btn-primary">
+            </Link>
+            <Link href="/contact#contact" className="btn-primary">
               Book a Free Site Survey
-            </a>
+            </Link>
           </div>
 
           <button
@@ -315,37 +336,41 @@ const HeaderNav = () => {
               {isMobileServicesOpen ? (
                 <div className="ml-3 flex flex-col gap-1 border-l border-white/10 pl-3">
                   {serviceCards.map((service) => (
-                    <a
+                    <Link
                       key={service.title}
                       href={service.href}
                       onClick={closeMenu}
                       className="rounded-md px-3 py-2 text-sm text-zinc-300 transition-colors hover:bg-white/5 hover:text-white"
                     >
                       {service.title}
-                    </a>
+                    </Link>
                   ))}
                 </div>
               ) : null}
 
               {navItems.map((item) => (
-                <a
+                <Link
                   key={item.label}
                   href={item.href}
                   onClick={closeMenu}
                   className="rounded-md px-3 py-2 text-sm font-medium text-zinc-200 transition-colors hover:bg-white/5 hover:text-white"
                 >
                   {item.label}
-                </a>
+                </Link>
               ))}
             </nav>
 
             <div className="mt-4 flex flex-col gap-3">
-              <a href="#contact" onClick={closeMenu} className="btn-secondary w-full">
+              <Link href="/contact" onClick={closeMenu} className="btn-secondary w-full">
                 Contact
-              </a>
-              <a href="#contact" onClick={closeMenu} className="btn-primary w-full">
+              </Link>
+              <Link
+                href="/contact#contact"
+                onClick={closeMenu}
+                className="btn-primary w-full"
+              >
                 Book a Free Site Survey
-              </a>
+              </Link>
             </div>
           </div>
         ) : null}

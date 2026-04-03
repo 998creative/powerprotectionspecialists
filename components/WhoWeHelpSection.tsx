@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 type ClientLogo = {
   name: string;
@@ -9,6 +10,7 @@ type ClientLogo = {
 
 type Sector = {
   title: string;
+  description: string;
   imageSrc: string;
   imageAlt: string;
   icon:
@@ -22,37 +24,49 @@ type Sector = {
 
 const sectors: Sector[] = [
   {
-    title: "Hospitals & Healthcare",
+    title: "Healthcare & NHS",
+    description:
+      "Clinical power protection for hospitals, labs and patient-critical systems.",
     imageSrc: "/who-we-help/hospitals-contact-13176450.jpg",
     imageAlt: "Hospital environment representing healthcare sector infrastructure",
     icon: "healthcare",
   },
   {
     title: "Universities & Education",
+    description:
+      "Reliable backup for campus IT, lecture facilities and education infrastructure.",
     imageSrc: "/who-we-help/universities-ollie-8793386.jpg",
     imageAlt: "Large lecture room representing universities and education sites",
     icon: "education",
   },
   {
     title: "Local Government",
+    description:
+      "Resilient UPS support for councils, civic buildings and public services.",
     imageSrc: "/who-we-help/local-government-fotios-2130031.jpg",
     imageAlt: "City civic area representing local government organisations",
     icon: "government",
   },
   {
     title: "Corporate Organisations",
+    description:
+      "Business continuity solutions for commercial and multi-site organisations.",
     imageSrc: "/who-we-help/corporate-divinetechygirl-1181406.jpg",
     imageAlt: "Modern office environment representing corporate organisations",
     icon: "corporate",
   },
   {
     title: "IT Resellers & Contractors",
+    description:
+      "Project-ready UPS expertise for IT providers and delivery partners.",
     imageSrc: "/who-we-help/it-cookiecutter-17489156.jpg",
     imageAlt: "Critical IT hardware close-up representing resellers and contractors",
     icon: "it",
   },
   {
     title: "Small & Medium Businesses",
+    description:
+      "Scalable, practical backup power support for growing SMEs.",
     imageSrc: "/who-we-help/smb-proxyclick-2451566.jpg",
     imageAlt: "Small business office setting representing SME organisations",
     icon: "smb",
@@ -94,6 +108,12 @@ const clientLogos: ClientLogo[] = [
 
 const logoSequence = [...clientLogos, ...clientLogos, ...clientLogos];
 const marqueeLogos = [...logoSequence, ...logoSequence];
+
+type WhoWeHelpSectionProps = {
+  showLogos?: boolean;
+  contactHref?: string;
+  theme?: "dark" | "light";
+};
 
 const SectorIcon = ({ icon }: { icon: Sector["icon"] }) => {
   const iconClass = "h-8 w-8 stroke-white";
@@ -148,18 +168,46 @@ const SectorIcon = ({ icon }: { icon: Sector["icon"] }) => {
   }
 };
 
-const WhoWeHelpSection = () => {
+const WhoWeHelpSection = ({
+  showLogos = true,
+  contactHref = "#contact",
+  theme = "dark",
+}: WhoWeHelpSectionProps) => {
+  const isLight = theme === "light";
+
   return (
     <section
       id="who-we-help"
-      className="overflow-hidden border-b border-white/10 bg-[#0a0a0f]"
+      className={
+        isLight
+          ? "overflow-hidden border-b border-[#d9e1f1] bg-white"
+          : "overflow-hidden border-b border-white/10 bg-[#0a0a0f]"
+      }
     >
       <div className="mx-auto max-w-[1252px] px-6 py-20 md:py-28">
-        <div className="rounded-3xl border border-white/10 bg-[#0f1522] p-8 md:p-12">
-          <h2 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+        <div
+          className={
+            isLight
+              ? "rounded-3xl border border-[#d6dff0] bg-white p-8 md:p-12"
+              : "rounded-3xl border border-white/10 bg-[#0f1522] p-8 md:p-12"
+          }
+        >
+          <h2
+            className={
+              isLight
+                ? "text-4xl font-semibold tracking-tight text-[#0b1324] sm:text-5xl"
+                : "text-4xl font-semibold tracking-tight text-white sm:text-5xl"
+            }
+          >
             Who We Help
           </h2>
-          <p className="mt-6 max-w-3xl text-lg leading-relaxed text-zinc-100">
+          <p
+            className={
+              isLight
+                ? "mt-6 max-w-3xl text-lg leading-relaxed text-[#41547a]"
+                : "mt-6 max-w-3xl text-lg leading-relaxed text-zinc-100"
+            }
+          >
             You are statistically more likely to lose business to a power
             failure than a computer virus.
           </p>
@@ -167,7 +215,11 @@ const WhoWeHelpSection = () => {
             {sectors.map((sector) => (
               <div
                 key={sector.title}
-                className="group overflow-hidden rounded-md border border-white/10 bg-[#121b2a] transition-all duration-300 hover:-translate-y-1 hover:border-[#0066ff]/70 hover:shadow-[0_12px_30px_rgba(0,102,255,0.2)]"
+                className={
+                  isLight
+                    ? "group overflow-hidden rounded-md border border-[#d6dff0] bg-[#e9eff9] transition-all duration-300 hover:-translate-y-1 hover:border-[#0066ff]/70 hover:shadow-[0_12px_30px_rgba(0,102,255,0.2)]"
+                    : "group overflow-hidden rounded-md border border-white/10 bg-[#121b2a] transition-all duration-300 hover:-translate-y-1 hover:border-[#0066ff]/70 hover:shadow-[0_12px_30px_rgba(0,102,255,0.2)]"
+                }
               >
                 <div className="relative h-32 w-full md:h-40">
                   <Image
@@ -176,11 +228,20 @@ const WhoWeHelpSection = () => {
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="pointer-events-none absolute inset-0 bg-[#020611]/55" />
+                  <div
+                    className={
+                      isLight
+                        ? "pointer-events-none absolute inset-0 bg-[#020611]/45"
+                        : "pointer-events-none absolute inset-0 bg-[#020611]/55"
+                    }
+                  />
                   <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 px-4 text-center">
                     <SectorIcon icon={sector.icon} />
-                    <span className="text-sm font-semibold text-zinc-100 sm:text-base">
+                    <span className="text-sm font-semibold text-zinc-100 transition-all duration-300 group-hover:translate-y-1 group-hover:opacity-0 sm:text-base">
                       {sector.title}
+                    </span>
+                    <span className="pointer-events-none absolute left-1/2 top-1/2 w-[86%] -translate-x-1/2 text-sm leading-relaxed text-zinc-100 opacity-0 transition-all duration-300 group-hover:translate-y-3 group-hover:opacity-100">
+                      {sector.description}
                     </span>
                   </div>
                 </div>
@@ -188,8 +249,11 @@ const WhoWeHelpSection = () => {
             ))}
           </div>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-start md:justify-end">
+            <Link href="/who-we-help" className={isLight ? "btn-tertiary" : "btn-secondary"}>
+              Learn more about who we help
+            </Link>
             <a
-              href="#contact"
+              href={contactHref}
               className="btn-primary"
             >
               <svg
@@ -206,43 +270,30 @@ const WhoWeHelpSection = () => {
               </svg>
               Speak to a real person
             </a>
-            <a
-              href="#contact"
-              className="btn-secondary"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                aria-hidden="true"
-                className="mr-2 h-4 w-4 shrink-0 stroke-current"
-              >
-                <rect x="3.5" y="5.5" width="17" height="13" rx="2" strokeWidth="1.8" />
-                <path d="M4.5 7.5 12 13l7.5-5.5" strokeWidth="1.8" strokeLinecap="round" />
-              </svg>
-              Send us a message
-            </a>
           </div>
         </div>
       </div>
 
-      <div className="relative left-1/2 mb-10 w-screen -translate-x-1/2 overflow-hidden py-10 md:mb-12 md:py-14">
-        <div className="logo-marquee-track flex w-max items-center gap-10 px-6">
-          {marqueeLogos.map((logo, index) => (
-            <div
-              key={`${logo.name}-${index}`}
-              className="flex h-12 w-40 shrink-0 items-center justify-center"
-            >
-              <Image
-                src={logo.src}
-                alt={`${logo.name} client logo`}
-                width={logo.width}
-                height={logo.height}
-                className="h-auto w-auto max-h-9 object-contain opacity-50"
-              />
-            </div>
-          ))}
+      {showLogos ? (
+        <div className="relative left-1/2 mb-10 w-screen -translate-x-1/2 overflow-hidden py-10 md:mb-12 md:py-14">
+          <div className="logo-marquee-track flex w-max items-center gap-10 px-6">
+            {marqueeLogos.map((logo, index) => (
+              <div
+                key={`${logo.name}-${index}`}
+                className="flex h-12 w-40 shrink-0 items-center justify-center"
+              >
+                <Image
+                  src={logo.src}
+                  alt={`${logo.name} client logo`}
+                  width={logo.width}
+                  height={logo.height}
+                  className="h-auto w-auto max-h-9 object-contain opacity-50"
+                />
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      ) : null}
     </section>
   );
 };

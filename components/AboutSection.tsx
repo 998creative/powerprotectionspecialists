@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const AboutSection = () => {
   return (
     <section
@@ -33,12 +35,12 @@ const AboutSection = () => {
             Our customers include universities, hospitals, local councils, IT
             resellers and large corporate organisations.
           </p>
-          <a
-            href="#contact"
+          <Link
+            href="/about"
             className="mt-8 inline-flex text-base font-semibold text-[#0066ff] transition-colors hover:text-[#0052cc]"
           >
             About us &rarr;
-          </a>
+          </Link>
         </div>
       </div>
     </section>
