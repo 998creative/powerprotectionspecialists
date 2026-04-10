@@ -2,7 +2,7 @@
   const initNavigation = () => {
     const nav = document.getElementById('pps-primary-nav');
     const navToggle = document.querySelector('.pps-nav-toggle');
-    const isDesktopViewport = () => window.matchMedia('(min-width: 961px)').matches;
+    const isDesktopViewport = () => window.matchMedia('(min-width: 1024px)').matches;
 
     if (nav && navToggle) {
       navToggle.addEventListener('click', () => {
@@ -58,7 +58,7 @@
       clearCloseTimer(parent);
       const timer = setTimeout(() => {
         closeParent(parent);
-      }, 420);
+      }, 320);
       closeTimers.set(parent, timer);
     };
 

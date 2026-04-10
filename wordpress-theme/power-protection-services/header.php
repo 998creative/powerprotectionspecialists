@@ -14,7 +14,7 @@ $sectors  = pps_sector_data();
 $support  = pps_support_data();
 
 $svg_allowed = [
-    'svg' => ['viewBox' => true, 'fill' => true, 'aria-hidden' => true, 'class' => true],
+    'svg' => ['viewbox' => true, 'fill' => true, 'aria-hidden' => true, 'class' => true],
     'path' => ['d' => true, 'stroke-width' => true, 'stroke-linecap' => true, 'stroke-linejoin' => true],
     'rect' => ['x' => true, 'y' => true, 'width' => true, 'height' => true, 'rx' => true, 'stroke-width' => true],
     'circle' => ['cx' => true, 'cy' => true, 'r' => true, 'stroke-width' => true],
@@ -94,7 +94,12 @@ $support_image_map = [
             <span>Power Protection Services</span>
         </a>
 
-        <button class="pps-nav-toggle" type="button" aria-expanded="false" aria-controls="pps-primary-nav">Menu</button>
+        <button class="pps-nav-toggle" type="button" aria-expanded="false" aria-controls="pps-primary-nav" aria-label="Toggle navigation menu">
+            <span class="screen-reader-text">Menu</span>
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M4 7h16M4 12h16M4 17h16" stroke-width="2" stroke-linecap="round" />
+            </svg>
+        </button>
 
         <nav id="pps-primary-nav" class="pps-nav" aria-label="Primary Navigation">
             <ul class="pps-nav-list">

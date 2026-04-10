@@ -30,6 +30,7 @@ function pps_enqueue_assets(): void
 
     wp_enqueue_style('pps-fonts', 'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap', [], null);
     wp_enqueue_style('pps-theme', get_stylesheet_uri(), [], $theme_version);
+    wp_enqueue_style('pps-theme-main', get_template_directory_uri() . '/assets/css/main.css', ['pps-theme'], $theme_version);
     wp_enqueue_script('pps-theme', get_template_directory_uri() . '/assets/js/main.js', [], $theme_version, true);
 
     wp_localize_script('pps-theme', 'ppsTheme', [

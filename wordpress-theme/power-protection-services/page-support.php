@@ -34,7 +34,7 @@ $warranty_points = [
 ];
 
 $svg_allowed = [
-    'svg' => ['viewBox' => true, 'fill' => true, 'aria-hidden' => true],
+    'svg' => ['viewbox' => true, 'fill' => true, 'aria-hidden' => true],
     'path' => ['d' => true, 'stroke-width' => true, 'stroke-linecap' => true, 'stroke-linejoin' => true],
     'rect' => ['x' => true, 'y' => true, 'width' => true, 'height' => true, 'rx' => true, 'stroke-width' => true],
     'circle' => ['cx' => true, 'cy' => true, 'r' => true, 'stroke-width' => true],
