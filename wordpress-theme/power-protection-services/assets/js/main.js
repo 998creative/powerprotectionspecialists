@@ -58,7 +58,7 @@
       clearCloseTimer(parent);
       const timer = setTimeout(() => {
         closeParent(parent);
-      }, 320);
+      }, 550);
       closeTimers.set(parent, timer);
     };
 

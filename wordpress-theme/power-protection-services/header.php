@@ -14,10 +14,10 @@ $sectors  = pps_sector_data();
 $support  = pps_support_data();
 
 $svg_allowed = [
-    'svg' => ['viewbox' => true, 'fill' => true, 'aria-hidden' => true, 'class' => true],
-    'path' => ['d' => true, 'stroke-width' => true, 'stroke-linecap' => true, 'stroke-linejoin' => true],
-    'rect' => ['x' => true, 'y' => true, 'width' => true, 'height' => true, 'rx' => true, 'stroke-width' => true],
-    'circle' => ['cx' => true, 'cy' => true, 'r' => true, 'stroke-width' => true],
+    'svg' => ['viewbox' => true, 'viewBox' => true, 'fill' => true, 'aria-hidden' => true, 'class' => true],
+    'path' => ['d' => true, 'stroke' => true, 'stroke-width' => true, 'stroke-linecap' => true, 'stroke-linejoin' => true],
+    'rect' => ['x' => true, 'y' => true, 'width' => true, 'height' => true, 'rx' => true, 'stroke' => true, 'stroke-width' => true],
+    'circle' => ['cx' => true, 'cy' => true, 'r' => true, 'stroke' => true, 'stroke-width' => true],
 ];
 
 $service_icon_svg = static function (string $slug): string {

@@ -27,11 +27,19 @@ add_action('after_setup_theme', 'pps_theme_setup');
 function pps_enqueue_assets(): void
 {
     $theme_version = wp_get_theme()->get('Version');
+    $style_path = get_stylesheet_directory() . '/style.css';
+    $main_css_path = get_template_directory() . '/assets/css/main.css';
+    $main_js_path = get_template_directory() . '/assets/js/main.js';
+
+    // File mtimes avoid stale asset query strings if theme metadata is cached.
+    $style_version = file_exists($style_path) ? (string) filemtime($style_path) : $theme_version;
+    $main_css_version = file_exists($main_css_path) ? (string) filemtime($main_css_path) : $theme_version;
+    $main_js_version = file_exists($main_js_path) ? (string) filemtime($main_js_path) : $theme_version;
 
     wp_enqueue_style('pps-fonts', 'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap', [], null);
-    wp_enqueue_style('pps-theme', get_stylesheet_uri(), [], $theme_version);
-    wp_enqueue_style('pps-theme-main', get_template_directory_uri() . '/assets/css/main.css', ['pps-theme'], $theme_version);
-    wp_enqueue_script('pps-theme', get_template_directory_uri() . '/assets/js/main.js', [], $theme_version, true);
+    wp_enqueue_style('pps-theme', get_stylesheet_uri(), [], $style_version);
+    wp_enqueue_style('pps-theme-main', get_template_directory_uri() . '/assets/css/main.css', ['pps-theme'], $main_css_version);
+    wp_enqueue_script('pps-theme', get_template_directory_uri() . '/assets/js/main.js', [], $main_js_version, true);
 
     wp_localize_script('pps-theme', 'ppsTheme', [
         'manualsDataUrl' => pps_asset_url('data/manuals.json'),

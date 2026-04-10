@@ -16,6 +16,10 @@
   box-sizing: border-box;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 html,
 body {
   margin: 0;
@@ -48,7 +52,7 @@ img {
 
 .pps-main {
   min-height: 60vh;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 .pps-header {
@@ -1117,7 +1121,8 @@ img {
 
 .pps-home-hero {
   position: relative;
-  overflow: visible;
+  overflow-x: clip;
+  overflow-y: visible;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   background: #0a0a0f;
 }
@@ -1149,12 +1154,10 @@ img {
 
 .pps-home-hero-fade {
   z-index: 10;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: auto;
+  inset: auto 0 0;
   height: 11rem;
   background: linear-gradient(to top, #0a0a0f 0%, rgba(10, 10, 15, 0) 100%);
+  pointer-events: none;
 }
 
 .pps-home-hero-ring {
@@ -1673,11 +1676,9 @@ img {
 
 .pps-home-client-marquee {
   position: relative;
-  left: 50%;
   margin-top: 0;
   margin-bottom: 2.5rem;
-  width: 100vw;
-  transform: translateX(-50%);
+  width: 100%;
   overflow: hidden;
   padding: 2.5rem 0;
 }
@@ -1687,6 +1688,7 @@ img {
   align-items: center;
   gap: 40px;
   width: max-content;
+  min-width: max-content;
   padding: 0 24px;
   animation: logo-marquee 84s linear infinite;
   will-change: transform;

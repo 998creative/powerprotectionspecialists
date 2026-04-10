@@ -68,6 +68,13 @@ $why_us_cards = [
     ],
 ];
 
+$svg_allowed = [
+    'svg' => ['viewbox' => true, 'viewBox' => true, 'fill' => true, 'aria-hidden' => true, 'class' => true],
+    'path' => ['d' => true, 'stroke' => true, 'stroke-width' => true, 'stroke-linejoin' => true, 'stroke-linecap' => true],
+    'rect' => ['x' => true, 'y' => true, 'width' => true, 'height' => true, 'rx' => true, 'stroke' => true, 'stroke-width' => true],
+    'circle' => ['cx' => true, 'cy' => true, 'r' => true, 'stroke' => true, 'stroke-width' => true],
+];
+
 $sector_icon_svg = static function (string $slug): string {
     switch ($slug) {
         case 'healthcare-and-nhs':
@@ -222,7 +229,7 @@ get_header();
                         <img src="<?php echo esc_url(pps_image_url($item['image'])); ?>" alt="<?php echo esc_attr($item['image_alt']); ?>" />
                         <span class="pps-home-sector-overlay"></span>
                         <span class="pps-home-sector-content">
-                            <span class="pps-home-sector-icon"><?php echo wp_kses($sector_icon_svg((string) $item['slug']), ['svg' => ['viewbox' => true, 'fill' => true, 'aria-hidden' => true], 'path' => ['d' => true, 'stroke-width' => true, 'stroke-linejoin' => true, 'stroke-linecap' => true], 'rect' => ['x' => true, 'y' => true, 'width' => true, 'height' => true, 'rx' => true, 'stroke-width' => true]]); ?></span>
+                            <span class="pps-home-sector-icon"><?php echo wp_kses($sector_icon_svg((string) $item['slug']), $svg_allowed); ?></span>
                             <span class="pps-home-sector-title"><?php echo esc_html($copy['title'] ?? $item['title']); ?></span>
                             <span class="pps-home-sector-description"><?php echo esc_html($copy['description'] ?? $item['description']); ?></span>
                         </span>
@@ -287,7 +294,7 @@ get_header();
         <div class="pps-home-why-grid">
             <?php foreach ($why_us_cards as $item) : ?>
                 <article class="pps-home-why-card">
-                    <span class="pps-home-why-icon"><?php echo wp_kses($why_icon_svg((string) ($item['icon'] ?? '')), ['svg' => ['viewbox' => true, 'fill' => true, 'aria-hidden' => true], 'path' => ['d' => true, 'stroke-width' => true, 'stroke-linejoin' => true, 'stroke-linecap' => true], 'circle' => ['cx' => true, 'cy' => true, 'r' => true, 'stroke-width' => true]]); ?></span>
+                    <span class="pps-home-why-icon"><?php echo wp_kses($why_icon_svg((string) ($item['icon'] ?? '')), $svg_allowed); ?></span>
                     <h3><?php echo esc_html($item['title']); ?></h3>
                     <p><?php echo esc_html($item['description']); ?></p>
                 </article>
