@@ -49,18 +49,22 @@ $why_us_cards = [
     [
         'title' => 'Independent',
         'description' => 'We work with all major UPS and generator manufacturers, so our advice is always unbiased - never driven by supplier incentives.',
+        'icon' => 'independent',
     ],
     [
         'title' => 'Experienced',
         'description' => 'Over 25 years of experience delivering UPS installation, maintenance and power protection across the UK.',
+        'icon' => 'experienced',
     ],
     [
         'title' => 'Certified',
         'description' => 'All installations meet NICEIC Approved Contractor standards. Our engineers are factory-trained by major UPS manufacturers and IEE qualified.',
+        'icon' => 'certified',
     ],
     [
         'title' => 'Full Turnkey',
         'description' => 'From initial site survey to UPS installation, commissioning, maintenance and ongoing support - one team, one point of contact, zero handoff risk.',
+        'icon' => 'turnkey',
     ],
 ];
 
@@ -78,6 +82,21 @@ $sector_icon_svg = static function (string $slug): string {
             return '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="4.8" width="14" height="5.6" rx="1.5" stroke-width="1.8" /><rect x="5" y="13.6" width="14" height="5.6" rx="1.5" stroke-width="1.8" /><path d="M8.5 7.6h.01M8.5 16.4h.01M11 7.6h4.5M11 16.4h4.5" stroke-width="1.8" stroke-linecap="round" /></svg>';
         default:
             return '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 10.5h16l-1.3-3.5H5.3L4 10.5Z" stroke-width="1.8" stroke-linejoin="round" /><path d="M6 10.5V19h12v-8.5M10 19v-5h4v5" stroke-width="1.8" /></svg>';
+    }
+};
+
+$why_icon_svg = static function (string $icon): string {
+    switch ($icon) {
+        case 'independent':
+            return '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 8.5h16M7.5 5.5v6M16.5 5.5v6M4 13.5h16v5H4z" stroke-width="1.8" stroke-linejoin="round" /></svg>';
+        case 'experienced':
+            return '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="7.5" stroke-width="1.8" /><path d="M12 8v4l2.8 2.2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>';
+        case 'certified':
+            return '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.8 18.5 6v6.2c0 4.2-2.8 6.8-6.5 8-3.7-1.2-6.5-3.8-6.5-8V6L12 3.8Z" stroke-width="1.8" stroke-linejoin="round" /><path d="m9.4 12.2 1.8 1.9 3.5-3.8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>';
+        case 'turnkey':
+            return '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="8.2" cy="12" r="3.2" stroke-width="1.8" /><path d="M11.4 12h8.2M16.8 12v2.3M14.7 12v1.6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>';
+        default:
+            return '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.2" stroke-width="1.8" /></svg>';
     }
 };
 
@@ -268,7 +287,7 @@ get_header();
         <div class="pps-home-why-grid">
             <?php foreach ($why_us_cards as $item) : ?>
                 <article class="pps-home-why-card">
-                    <span class="pps-home-why-dot"></span>
+                    <span class="pps-home-why-icon"><?php echo wp_kses($why_icon_svg((string) ($item['icon'] ?? '')), ['svg' => ['viewBox' => true, 'fill' => true, 'aria-hidden' => true], 'path' => ['d' => true, 'stroke-width' => true, 'stroke-linejoin' => true, 'stroke-linecap' => true], 'circle' => ['cx' => true, 'cy' => true, 'r' => true, 'stroke-width' => true]]); ?></span>
                     <h3><?php echo esc_html($item['title']); ?></h3>
                     <p><?php echo esc_html($item['description']); ?></p>
                 </article>

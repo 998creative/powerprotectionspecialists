@@ -2,6 +2,7 @@
   const initNavigation = () => {
     const nav = document.getElementById('pps-primary-nav');
     const navToggle = document.querySelector('.pps-nav-toggle');
+    const isDesktopViewport = () => window.matchMedia('(min-width: 961px)').matches;
 
     if (nav && navToggle) {
       navToggle.addEventListener('click', () => {
@@ -13,10 +14,52 @@
 
     const menuParents = Array.from(document.querySelectorAll('.pps-has-mega'));
     const triggers = Array.from(document.querySelectorAll('.pps-nav-trigger'));
+    const closeTimers = new WeakMap();
 
-    const closeAllMenus = () => {
+    const clearCloseTimer = (parent) => {
+      const timer = closeTimers.get(parent);
+      if (timer) {
+        clearTimeout(timer);
+        closeTimers.delete(parent);
+      }
+    };
+
+    const closeParent = (parent) => {
+      parent.classList.remove('pps-open');
+      const trigger = parent.querySelector('.pps-nav-trigger');
+      if (trigger instanceof HTMLElement) {
+        trigger.setAttribute('aria-expanded', 'false');
+      }
+    };
+
+    const closeAllMenus = (exceptParent = null) => {
       menuParents.forEach((parent) => parent.classList.remove('pps-open'));
-      triggers.forEach((trigger) => trigger.setAttribute('aria-expanded', 'false'));
+      triggers.forEach((trigger) => {
+        const parent = trigger.closest('.pps-has-mega');
+        if (exceptParent && parent === exceptParent) {
+          return;
+        }
+
+        trigger.setAttribute('aria-expanded', 'false');
+      });
+    };
+
+    const openMenu = (parent) => {
+      clearCloseTimer(parent);
+      closeAllMenus(parent);
+      parent.classList.add('pps-open');
+      const trigger = parent.querySelector('.pps-nav-trigger');
+      if (trigger instanceof HTMLElement) {
+        trigger.setAttribute('aria-expanded', 'true');
+      }
+    };
+
+    const scheduleCloseMenu = (parent) => {
+      clearCloseTimer(parent);
+      const timer = setTimeout(() => {
+        closeParent(parent);
+      }, 220);
+      closeTimers.set(parent, timer);
     };
 
     triggers.forEach((trigger) => {
@@ -28,13 +71,49 @@
         }
 
         const expanded = trigger.getAttribute('aria-expanded') === 'true';
-        closeAllMenus();
-
-        if (!expanded) {
-          parent.classList.add('pps-open');
-          trigger.setAttribute('aria-expanded', 'true');
+        if (expanded) {
+          closeParent(parent);
+          return;
         }
+
+        openMenu(parent);
       });
+
+      trigger.addEventListener('focus', () => {
+        const parent = trigger.closest('.pps-has-mega');
+        if (!parent) {
+          return;
+        }
+        openMenu(parent);
+      });
+    });
+
+    menuParents.forEach((parent) => {
+      const mega = parent.querySelector('.pps-mega');
+
+      parent.addEventListener('mouseenter', () => {
+        if (!isDesktopViewport()) {
+          return;
+        }
+        openMenu(parent);
+      });
+
+      parent.addEventListener('mouseleave', () => {
+        if (!isDesktopViewport()) {
+          return;
+        }
+        scheduleCloseMenu(parent);
+      });
+
+      if (mega instanceof HTMLElement) {
+        mega.addEventListener('mouseenter', () => clearCloseTimer(parent));
+        mega.addEventListener('mouseleave', () => {
+          if (!isDesktopViewport()) {
+            return;
+          }
+          scheduleCloseMenu(parent);
+        });
+      }
     });
 
     document.addEventListener('click', (event) => {
@@ -50,6 +129,19 @@
 
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape') {
+        closeAllMenus();
+      }
+    });
+
+    window.addEventListener('resize', () => {
+      if (isDesktopViewport()) {
+        if (navToggle instanceof HTMLElement) {
+          navToggle.setAttribute('aria-expanded', 'false');
+        }
+        if (nav instanceof HTMLElement) {
+          nav.classList.remove('pps-open');
+        }
+      } else {
         closeAllMenus();
       }
     });

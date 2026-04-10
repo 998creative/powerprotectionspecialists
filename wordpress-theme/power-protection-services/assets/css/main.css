@@ -27,6 +27,7 @@ body.pps-site {
   color: var(--pps-text);
   font-family: 'Poppins', sans-serif;
   line-height: 1.5;
+  overflow-x: clip;
 }
 
 a {
@@ -46,6 +47,7 @@ img {
 
 .pps-main {
   min-height: 60vh;
+  overflow-x: clip;
 }
 
 .pps-header {
@@ -54,14 +56,16 @@ img {
   z-index: 70;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   background: #090b12;
+  overflow: visible;
 }
 
 .pps-header-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 80px;
+  min-height: 82px;
   gap: 24px;
+  overflow: visible;
 }
 
 .pps-brand {
@@ -72,7 +76,8 @@ img {
 
 .pps-brand img {
   width: auto;
-  height: 64px;
+  height: clamp(82px, 6vw, 96px);
+  margin-bottom: -16px;
 }
 
 .pps-brand span {
@@ -81,6 +86,7 @@ img {
   font-weight: 600;
   font-size: 14px;
   white-space: nowrap;
+  transform: translateY(-2px);
 }
 
 .pps-nav-toggle {
@@ -96,7 +102,7 @@ img {
 .pps-nav {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 22px;
 }
 
 .pps-nav-list {
@@ -105,13 +111,15 @@ img {
   padding: 0;
   display: flex;
   align-items: center;
-  gap: 26px;
+  gap: 30px;
 }
 
 .pps-nav-item {
   position: relative;
   color: #d4d7df;
-  font-size: 16px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
 }
 
 .pps-nav-item > a,
@@ -122,6 +130,20 @@ img {
   font: inherit;
   cursor: pointer;
   padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.pps-nav-trigger svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentcolor;
+  transition: transform 0.2s ease;
+}
+
+.pps-has-mega.pps-open .pps-nav-trigger svg {
+  transform: rotate(180deg);
 }
 
 .pps-nav-item:hover,
@@ -142,6 +164,7 @@ img {
   padding: 20px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
   z-index: 60;
+  animation: overlay-fade-in 220ms ease-out;
 }
 
 .pps-has-mega:hover .pps-mega,
@@ -163,52 +186,183 @@ img {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
-.pps-mega-card {
-  min-height: 132px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 10px;
-  background: #121b2a;
-  padding: 16px;
+.pps-mega-header {
+  margin-bottom: 14px;
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.pps-mega-label {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 12px;
+  color: #9ca4b6;
+}
+
+.pps-mega-viewall {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #0066ff;
+  transition: color 0.2s ease;
+}
+
+.pps-mega-viewall:hover {
+  color: #fff;
+}
+
+.pps-mega-card {
+  position: relative;
+  min-height: 160px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  background: #121b2a;
+  padding: 0;
+  display: flex;
   justify-content: center;
-  transition: 0.2s ease;
+  overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .pps-mega-card:hover {
-  transform: translateY(-2px);
+  transform: translateY(-4px);
   border-color: rgba(0, 102, 255, 0.7);
   box-shadow: 0 12px 30px rgba(0, 102, 255, 0.2);
 }
 
-.pps-mega-card strong {
-  color: #f4f5f8;
-  font-size: 24px;
-  line-height: 1.1;
+.pps-mega-card-media,
+.pps-mega-card-overlay,
+.pps-mega-card-primary,
+.pps-mega-card-secondary {
+  position: absolute;
+  inset: 0;
 }
 
-.pps-mega-card span {
+.pps-mega-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s ease;
+}
+
+.pps-mega-card:hover .pps-mega-card-media img {
+  transform: scale(1.05);
+}
+
+.pps-mega-card-overlay {
+  background: rgba(2, 6, 17, 0.72);
+}
+
+.pps-mega-card-primary,
+.pps-mega-card-secondary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 14px;
+  text-align: center;
+  transition: transform 0.28s ease, opacity 0.28s ease;
+}
+
+.pps-mega-card-primary {
+  z-index: 2;
+}
+
+.pps-mega-card-secondary {
+  z-index: 2;
+  opacity: 0;
+}
+
+.pps-mega-card:hover .pps-mega-card-primary,
+.pps-mega-card:focus-visible .pps-mega-card-primary {
+  transform: translateY(-8px);
+  opacity: 0;
+}
+
+.pps-mega-card:hover .pps-mega-card-secondary,
+.pps-mega-card:focus-visible .pps-mega-card-secondary {
+  opacity: 1;
+}
+
+.pps-mega-card-icon {
+  width: 30px;
+  height: 30px;
+  color: #fff;
+  display: inline-flex;
+}
+
+.pps-mega-card-icon svg {
+  width: 100%;
+  height: 100%;
+  stroke: currentcolor;
+}
+
+.pps-mega-card strong {
+  color: #f4f5f8;
+  font-size: 15px;
+  line-height: 1.35;
+  font-weight: 600;
+}
+
+.pps-mega-card-secondary > span:first-child {
   color: #b8c0cf;
   font-size: 14px;
+  line-height: 1.55;
+  max-width: 18rem;
+}
+
+.pps-mega-chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.1);
+  padding: 6px 12px;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: 0.2s ease;
+}
+
+.pps-mega-card:hover .pps-mega-chip {
+  border-color: #0066ff;
+  background: #0066ff;
 }
 
 .pps-mega-card.pps-disabled {
-  opacity: 0.75;
+  opacity: 0.82;
+  cursor: default;
 }
 
-.pps-mega-card em {
-  display: inline-block;
-  margin-top: 6px;
+.pps-mega-card.pps-disabled:hover {
+  transform: none;
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: none;
+}
+
+.pps-mega-card.pps-disabled .pps-mega-card-primary {
+  opacity: 1;
+  transform: none;
+}
+
+.pps-mega-card.pps-disabled .pps-mega-card-secondary {
+  opacity: 1;
+  justify-content: flex-end;
+  gap: 8px;
+  padding-bottom: 18px;
+}
+
+.pps-mega-chip.pps-mega-chip-disabled {
+  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.1);
   color: #e5e7ef;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-style: normal;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  border-radius: 8px;
-  padding: 4px 8px;
-  width: fit-content;
 }
 
 .pps-btn {
@@ -963,7 +1117,9 @@ img {
 
 .pps-home-hero-fade {
   z-index: 10;
-  bottom: auto;
+  left: 0;
+  right: 0;
+  bottom: 0;
   top: auto;
   height: 11rem;
   background: linear-gradient(to top, #0a0a0f 0%, rgba(10, 10, 15, 0) 100%);
@@ -995,8 +1151,12 @@ img {
 .pps-home-hero-inner {
   position: relative;
   z-index: 30;
-  padding-top: 12rem;
-  padding-bottom: 6.5rem;
+  min-height: clamp(580px, 72vh, 760px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 8rem;
+  padding-bottom: 8rem;
 }
 
 .pps-home-hero-copy {
@@ -1037,13 +1197,16 @@ img {
 .pps-trustbar {
   position: relative;
   z-index: 30;
+  margin-top: 3.5rem;
+  margin-bottom: -8rem;
 }
 
 .pps-trustbar-card {
   border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 24px;
-  background: rgba(9, 13, 22, 0.92);
-  padding: 20px 24px;
+  border-radius: 16px;
+  background: #1b2236;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.35);
+  padding: 24px 28px;
   backdrop-filter: blur(8px);
 }
 
@@ -1060,12 +1223,12 @@ img {
 
 .pps-trustbar-item {
   border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 10px;
-  background: rgba(14, 23, 37, 0.78);
+  border-radius: 8px;
+  background: #121c2e;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 72px;
+  min-height: 88px;
   padding: 12px;
 }
 
@@ -1102,7 +1265,7 @@ img {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 56px;
   align-items: center;
-  padding-top: 16rem;
+  padding-top: 15rem;
   padding-bottom: 7rem;
 }
 
@@ -1248,6 +1411,17 @@ img {
 .pps-home-slider-viewport,
 .pps-home-testimonials-viewport {
   margin-top: 2rem;
+  overflow: visible;
+}
+
+.pps-home-slider-viewport {
+  padding-left: max(24px, calc((100vw - 78rem) / 2 + 24px));
+  padding-right: 0;
+  padding-bottom: 20px;
+  overflow-x: clip;
+}
+
+.pps-home-testimonials-viewport {
   overflow: hidden;
 }
 
@@ -1262,7 +1436,7 @@ img {
   position: relative;
   flex: 0 0 33.333%;
   min-width: 0;
-  padding: 0 12px 24px;
+  padding: 0 10px 24px;
 }
 
 .pps-home-service-image {
@@ -1281,7 +1455,7 @@ img {
 .pps-home-service-card {
   position: relative;
   z-index: 2;
-  margin: -5rem 24px 0;
+  margin: -5rem 20px 0;
   min-height: 28rem;
   display: flex;
   flex-direction: column;
@@ -1429,6 +1603,8 @@ img {
 .pps-home-sector-tile:hover,
 .pps-home-sector-tile:focus-visible {
   transform: translateY(-3px);
+  border-color: rgba(0, 102, 255, 0.7);
+  box-shadow: 0 12px 30px rgba(0, 102, 255, 0.2);
 }
 
 .pps-home-sector-tile:hover .pps-home-sector-title,
@@ -1469,6 +1645,26 @@ img {
   padding: 0 24px;
   animation: logo-marquee 84s linear infinite;
   will-change: transform;
+}
+
+@keyframes logo-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes overlay-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .pps-home-client-logo {
@@ -1577,12 +1773,17 @@ img {
   border-color: rgba(0, 102, 255, 0.7);
 }
 
-.pps-home-why-dot {
+.pps-home-why-icon {
   display: inline-flex;
-  width: 14px;
-  height: 14px;
-  border-radius: 999px;
-  background: var(--pps-accent);
+  width: 36px;
+  height: 36px;
+  color: #0066ff;
+}
+
+.pps-home-why-icon svg {
+  width: 100%;
+  height: 100%;
+  stroke: currentcolor;
 }
 
 .pps-home-why-card h3 {
@@ -1694,6 +1895,11 @@ img {
 .pps-home-form-step {
   display: grid;
   gap: 12px;
+}
+
+.pps-home-form-step[hidden],
+[data-contact-step][hidden] {
+  display: none !important;
 }
 
 .pps-home-form-step label,
@@ -1897,13 +2103,22 @@ img {
 }
 
 @media (max-width: 1280px) {
-  .pps-home-hero-inner,
+  .pps-home-hero-inner {
+    min-height: 620px;
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+  }
+
   .pps-home-services .pps-container,
   .pps-home-testimonials,
   .pps-home-why,
   .pps-home-contact,
   .pps-home-who {
     padding-top: 5.5rem;
+  }
+
+  .pps-trustbar {
+    margin-bottom: -6rem;
   }
 
   .pps-home-about-grid {
@@ -1931,7 +2146,8 @@ img {
 
 @media (max-width: 960px) {
   .pps-home-hero-inner {
-    padding-top: 8.5rem;
+    min-height: 520px;
+    padding-top: 7.25rem;
     padding-bottom: 4.5rem;
   }
 
@@ -1950,6 +2166,10 @@ img {
 
   .pps-trustbar-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .pps-trustbar {
+    margin-bottom: -5rem;
   }
 
   .pps-home-about-grid {
@@ -1983,6 +2203,11 @@ img {
   .pps-home-slider-nav {
     margin-top: 2rem;
     gap: 14px;
+  }
+
+  .pps-home-slider-viewport {
+    padding-left: 16px;
+    padding-bottom: 12px;
   }
 
   .pps-home-service-slide {
@@ -2068,7 +2293,9 @@ img {
 
   .pps-nav-item > a,
   .pps-nav-trigger {
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
     text-align: left;
     padding: 8px 0;
@@ -2080,6 +2307,10 @@ img {
     width: 100%;
     margin-top: 8px;
     box-shadow: none;
+  }
+
+  .pps-mega-card {
+    min-height: 132px;
   }
 
   .pps-hero-inner {
@@ -2164,6 +2395,10 @@ img {
   .pps-trustbar-card,
   .pps-home-who-slab {
     padding: 18px;
+  }
+
+  .pps-trustbar {
+    margin-bottom: -3.5rem;
   }
 
   .pps-home-about-media-wrap {
