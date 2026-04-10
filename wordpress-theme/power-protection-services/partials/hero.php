@@ -21,6 +21,7 @@ $hero_actions = isset($hero_actions) && is_array($hero_actions) ? $hero_actions 
             <img src="<?php echo esc_url(pps_image_url($hero_background)); ?>" alt="" />
         </div>
         <div class="pps-hero-overlay"></div>
+        <div class="pps-hero-fade"></div>
         <div class="pps-hero-glow"></div>
     <?php endif; ?>
     <div class="pps-container pps-hero-inner">

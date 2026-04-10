@@ -58,7 +58,7 @@
       clearCloseTimer(parent);
       const timer = setTimeout(() => {
         closeParent(parent);
-      }, 220);
+      }, 420);
       closeTimers.set(parent, timer);
     };
 
@@ -169,18 +169,6 @@
       const getCardsPerView = () => {
         const width = window.innerWidth;
 
-        if (sliderType === 'services') {
-          if (width < 768) {
-            return 1;
-          }
-
-          if (width < 1200) {
-            return 2;
-          }
-
-          return 3;
-        }
-
         if (sliderType === 'testimonials') {
           if (width < 768) {
             return 1;
@@ -189,7 +177,15 @@
           return 2;
         }
 
-        return 1;
+        if (width < 768) {
+          return 1;
+        }
+
+        if (width < 1200) {
+          return 2;
+        }
+
+        return 3;
       };
 
       const syncLayout = () => {

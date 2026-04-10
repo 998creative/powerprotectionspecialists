@@ -37,19 +37,29 @@ $coverage_examples = [
 get_header();
 get_template_part('partials/hero');
 ?>
-<section class="pps-section pps-section-light">
+<section class="pps-section pps-section-light pps-section-muted" data-home-slider="sectors">
     <div class="pps-container">
         <p class="pps-eyebrow">Sectors We Serve</p>
         <h2>Business sectors we support</h2>
         <p class="pps-section-intro">We tailor recommendations by sector, so each organisation gets the right balance of resilience, compliance, scalability and long-term support.</p>
-        <div class="pps-card-grid pps-card-grid-3">
+        <div class="pps-home-slider-nav">
+            <div class="pps-home-slider-bar"><span data-home-slider-progress></span></div>
+            <div class="pps-home-slider-arrows">
+                <button type="button" aria-label="Previous sectors" data-home-slider-prev>&larr;</button>
+                <button type="button" aria-label="Next sectors" data-home-slider-next>&rarr;</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="pps-home-slider-viewport pps-sector-slider-viewport">
+        <div class="pps-home-slider-track pps-sector-slider-track" data-home-slider-track>
             <?php foreach ($sectors as $item) : ?>
-                <article class="pps-card pps-image-card pps-image-card-tall">
-                    <a class="pps-image-card-media" href="<?php echo esc_url($item['href']); ?>">
+                <article class="pps-sector-slide" data-home-slide>
+                    <div class="pps-sector-slide-image">
                         <img src="<?php echo esc_url(pps_image_url($item['image'])); ?>" alt="<?php echo esc_attr($item['image_alt']); ?>" />
-                    </a>
-                    <div class="pps-image-card-content">
-                        <h3><a href="<?php echo esc_url($item['href']); ?>"><?php echo esc_html($item['title']); ?></a></h3>
+                    </div>
+                    <div class="pps-sector-slide-card">
+                        <h3><?php echo esc_html($item['title']); ?></h3>
                         <p><?php echo esc_html($item['description']); ?></p>
                         <p class="pps-mini-heading">Typical needs</p>
                         <ul class="pps-inline-bullets">
@@ -65,7 +75,7 @@ get_template_part('partials/hero');
     </div>
 </section>
 
-<section class="pps-section pps-section-light pps-section-muted">
+<section class="pps-section pps-section-light pps-coverage-section">
     <div class="pps-container pps-two-col pps-coverage-grid">
         <div class="pps-prose">
             <p class="pps-eyebrow">UK Coverage</p>
@@ -84,6 +94,19 @@ get_template_part('partials/hero');
                 <?php endforeach; ?>
             </ul>
         </aside>
+    </div>
+</section>
+
+<section class="pps-section pps-section-dark">
+    <div class="pps-container pps-cta-block pps-cta-block-dark">
+        <div>
+            <h2>Need support for your organisation?</h2>
+            <p>Tell us about your site and we&apos;ll recommend a practical UPS and backup power approach that fits your environment.</p>
+        </div>
+        <div class="pps-cta-buttons">
+            <a class="pps-btn pps-btn-primary" href="<?php echo esc_url(home_url('/contact/#contact')); ?>">Contact Us</a>
+            <a class="pps-btn pps-btn-secondary" href="tel:01488685207">01488 685207</a>
+        </div>
     </div>
 </section>
 <?php get_footer();

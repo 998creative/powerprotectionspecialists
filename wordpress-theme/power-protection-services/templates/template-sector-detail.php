@@ -36,7 +36,7 @@ $other_sectors = pps_other_sectors_data($slug);
 get_header();
 get_template_part('partials/hero');
 ?>
-<section class="pps-section pps-section-light">
+<section class="pps-section pps-section-light pps-section-muted">
     <div class="pps-container">
         <article class="pps-panel pps-sector-content">
             <?php if (! empty($blocks)) : ?>
@@ -64,19 +64,29 @@ get_template_part('partials/hero');
 </section>
 
 <?php if (! empty($other_sectors)) : ?>
-<section class="pps-section pps-section-light pps-section-muted">
+<section class="pps-section pps-section-light" data-home-slider="other-sectors">
     <div class="pps-container">
         <p class="pps-eyebrow">Other Sectors We Serve</p>
         <h2>Explore other sectors we support</h2>
         <p class="pps-section-intro">We also support a range of other organisations with practical UPS and backup power solutions tailored to their environments.</p>
-        <div class="pps-card-grid pps-card-grid-3">
+        <div class="pps-home-slider-nav">
+            <div class="pps-home-slider-bar"><span data-home-slider-progress></span></div>
+            <div class="pps-home-slider-arrows">
+                <button type="button" aria-label="Previous sectors" data-home-slider-prev>&larr;</button>
+                <button type="button" aria-label="Next sectors" data-home-slider-next>&rarr;</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="pps-home-slider-viewport pps-sector-slider-viewport">
+        <div class="pps-home-slider-track pps-sector-slider-track" data-home-slider-track>
             <?php foreach ($other_sectors as $item) : ?>
-                <article class="pps-card pps-image-card pps-image-card-tall">
-                    <a class="pps-image-card-media" href="<?php echo esc_url($item['href']); ?>">
+                <article class="pps-sector-slide" data-home-slide>
+                    <div class="pps-sector-slide-image">
                         <img src="<?php echo esc_url(pps_image_url($item['image'])); ?>" alt="<?php echo esc_attr($item['image_alt']); ?>" />
-                    </a>
-                    <div class="pps-image-card-content">
-                        <h3><a href="<?php echo esc_url($item['href']); ?>"><?php echo esc_html($item['title']); ?></a></h3>
+                    </div>
+                    <div class="pps-sector-slide-card">
+                        <h3><?php echo esc_html($item['title']); ?></h3>
                         <p><?php echo esc_html($item['description']); ?></p>
                         <p class="pps-mini-heading">Typical needs</p>
                         <ul class="pps-inline-bullets">
