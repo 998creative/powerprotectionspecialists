@@ -80,22 +80,42 @@ jobs:
         run: |
           set -euo pipefail
 
-          RESPONSE="$(curl --silent --show-error --fail-with-body \
-            --request POST \"$WP_DEPLOY_URL\" \
-            --header \"x-wp-deploy-token: $WP_DEPLOY_TOKEN\" \
-            --form \"theme_zip=@wordpress-theme/power-protection-services.zip;type=application/zip\" \
-            --form \"theme_slug=power-protection-services\" \
-            --form \"commit_sha=${GITHUB_SHA}\")"
+          RESPONSE_FILE="$(mktemp)"
 
+          CURL_ARGS=(
+            --silent
+            --show-error
+            --output "$RESPONSE_FILE"
+            --write-out "%{http_code}"
+            --request POST
+            --header "x-wp-deploy-token: $WP_DEPLOY_TOKEN"
+            --form "theme_zip=@wordpress-theme/power-protection-services.zip;type=application/zip"
+            --form "theme_slug=power-protection-services"
+            --form "commit_sha=${GITHUB_SHA}"
+            "$WP_DEPLOY_URL"
+          )
+
+          HTTP_CODE="$(curl "${CURL_ARGS[@]}")"
+
+          echo "Deploy HTTP status: $HTTP_CODE"
           echo "Deploy response:"
-          echo "$RESPONSE"
+          cat "$RESPONSE_FILE"
 
-          if ! command -v jq >/dev/null 2>&1; then
-            echo "jq is required to validate deploy response." >&2
+          if [[ "$HTTP_CODE" -lt 200 || "$HTTP_CODE" -ge 300 ]]; then
+            echo "Deploy request failed with non-2xx status code." >&2
             exit 1
           fi
 
-          OK="$(printf '%s' "$RESPONSE" | jq -r '.ok // false')"
+          OK="$(
+            python3 - "$RESPONSE_FILE" <<'PY'
+import json, sys
+path = sys.argv[1]
+with open(path, "r", encoding="utf-8") as fh:
+    data = json.load(fh)
+print("true" if data.get("ok") is True else "false")
+PY
+          )"
+
           if [[ "$OK" != "true" ]]; then
             echo "Deploy endpoint returned ok=false." >&2
             exit 1
