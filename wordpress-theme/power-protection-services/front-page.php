@@ -107,6 +107,24 @@ $why_icon_svg = static function (string $icon): string {
     }
 };
 
+$button_icon_svg = static function (string $icon): string {
+    switch ($icon) {
+        case 'phone':
+            return '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7.8 4.8 10.4 7c.6.5.8 1.4.4 2l-1.1 1.8c1 2 2.7 3.7 4.7 4.7l1.8-1.1c.7-.4 1.5-.2 2 .4l2.2 2.6c.6.7.5 1.8-.3 2.3-1 .7-2.2 1.1-3.4 1-2.4-.1-5.5-1.4-8.3-4.2S4.3 13.6 4.2 11.2c0-1.2.3-2.4 1-3.4.6-.8 1.6-.9 2.3-.3Z" stroke-width="1.8" stroke-linejoin="round" /></svg>';
+        case 'grid':
+            return '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="4" width="7.2" height="7.2" rx="1.3" stroke-width="1.8" /><rect x="12.8" y="4" width="7.2" height="7.2" rx="1.3" stroke-width="1.8" /><rect x="4" y="12.8" width="7.2" height="7.2" rx="1.3" stroke-width="1.8" /><rect x="12.8" y="12.8" width="7.2" height="7.2" rx="1.3" stroke-width="1.8" /></svg>';
+        case 'arrow-left':
+            return '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5m6 6-6-6 6-6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>';
+        case 'send':
+            return '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m21 3-9.3 9.3M21 3l-6.3 18-3-8.7L3 9.3 21 3Z" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>';
+        case 'survey':
+            return '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5.2" y="4.2" width="13.6" height="15.6" rx="2" stroke-width="1.8" /><path d="m8.4 10.3 1.8 1.8 3.6-3.6M8.4 15.2h7.2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>';
+        case 'arrow-right':
+        default:
+            return '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>';
+    }
+};
+
 get_header();
 ?>
 
@@ -132,8 +150,14 @@ get_header();
         </div>
 
         <div class="pps-home-hero-actions">
-            <a href="#contact" class="pps-btn pps-btn-primary">Book a Free Site Survey</a>
-            <a href="#services" class="pps-btn pps-btn-secondary">Our Services</a>
+            <a href="#contact" class="pps-btn pps-btn-primary pps-btn--icon">
+                <span>Book a Free Site Survey</span>
+                <span class="pps-btn-icon"><?php echo wp_kses($button_icon_svg('survey'), $svg_allowed); ?></span>
+            </a>
+            <a href="#services" class="pps-btn pps-btn-secondary pps-btn--icon">
+                <span>Our Services</span>
+                <span class="pps-btn-icon"><?php echo wp_kses($button_icon_svg('grid'), $svg_allowed); ?></span>
+            </a>
         </div>
     </div>
 
@@ -187,7 +211,10 @@ get_header();
             Practical, end-to-end UPS installation and power protection services
             designed around your uptime targets and UK compliance requirements.
         </p>
-        <a href="#contact" class="pps-btn pps-btn-primary pps-home-services-cta">Book a Free Site Survey</a>
+        <a href="#contact" class="pps-btn pps-btn-primary pps-home-services-cta pps-btn--icon">
+            <span>Book a Free Site Survey</span>
+            <span class="pps-btn-icon"><?php echo wp_kses($button_icon_svg('survey'), $svg_allowed); ?></span>
+        </a>
 
         <div class="pps-home-slider-nav">
             <div class="pps-home-slider-bar"><span data-home-slider-progress></span></div>
@@ -208,7 +235,10 @@ get_header();
                     <div class="pps-home-service-card">
                         <h3><?php echo esc_html($item['title']); ?></h3>
                         <p><?php echo esc_html($item['description']); ?></p>
-                        <a href="<?php echo esc_url($item['href']); ?>" class="pps-btn pps-btn-tertiary">Find out more</a>
+                        <a href="<?php echo esc_url($item['href']); ?>" class="pps-btn pps-btn-tertiary pps-btn--icon">
+                            <span>Find out more</span>
+                            <span class="pps-btn-icon"><?php echo wp_kses($button_icon_svg('arrow-right'), $svg_allowed); ?></span>
+                        </a>
                     </div>
                 </article>
             <?php endforeach; ?>
@@ -238,8 +268,14 @@ get_header();
             </div>
 
             <div class="pps-home-who-actions">
-                <a href="<?php echo esc_url(home_url('/who-we-help/')); ?>" class="pps-btn pps-btn-secondary">Learn more about who we help</a>
-                <a href="#contact" class="pps-btn pps-btn-primary">Speak to a real person</a>
+                <a href="<?php echo esc_url(home_url('/who-we-help/')); ?>" class="pps-btn pps-btn-secondary pps-btn--icon">
+                    <span>Learn more about who we help</span>
+                    <span class="pps-btn-icon"><?php echo wp_kses($button_icon_svg('arrow-right'), $svg_allowed); ?></span>
+                </a>
+                <a href="#contact" class="pps-btn pps-btn-primary pps-btn--icon">
+                    <span>Speak to a real person</span>
+                    <span class="pps-btn-icon"><?php echo wp_kses($button_icon_svg('phone'), $svg_allowed); ?></span>
+                </a>
             </div>
         </div>
     </div>
@@ -393,9 +429,18 @@ get_header();
             </div>
 
             <div class="pps-home-form-actions">
-                <button type="button" class="pps-btn pps-btn-tertiary" data-contact-back hidden>Back</button>
-                <button type="button" class="pps-btn pps-btn-primary" data-contact-next>Continue</button>
-                <button type="submit" class="pps-btn pps-btn-primary" data-contact-submit hidden>Submit</button>
+                <button type="button" class="pps-btn pps-btn-tertiary pps-btn--icon pps-btn--icon-left" data-contact-back hidden>
+                    <span class="pps-btn-icon"><?php echo wp_kses($button_icon_svg('arrow-left'), $svg_allowed); ?></span>
+                    <span>Back</span>
+                </button>
+                <button type="button" class="pps-btn pps-btn-primary pps-btn--icon" data-contact-next>
+                    <span>Continue</span>
+                    <span class="pps-btn-icon"><?php echo wp_kses($button_icon_svg('arrow-right'), $svg_allowed); ?></span>
+                </button>
+                <button type="submit" class="pps-btn pps-btn-primary pps-btn--icon" data-contact-submit hidden>
+                    <span>Submit</span>
+                    <span class="pps-btn-icon"><?php echo wp_kses($button_icon_svg('send'), $svg_allowed); ?></span>
+                </button>
             </div>
 
             <div class="pps-home-form-success" data-contact-success hidden>

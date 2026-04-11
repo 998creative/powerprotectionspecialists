@@ -451,6 +451,35 @@ img {
   transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
 }
 
+.pps-btn--icon {
+  gap: 10px;
+}
+
+.pps-btn-icon {
+  display: inline-flex;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.pps-btn-icon svg {
+  width: 100%;
+  height: 100%;
+  stroke: currentcolor;
+}
+
+.pps-btn--icon .pps-btn-icon {
+  transition: transform 0.2s ease;
+}
+
+.pps-btn--icon:not(.pps-btn--icon-left):hover .pps-btn-icon {
+  transform: translateX(2px);
+}
+
+.pps-btn--icon-left:hover .pps-btn-icon {
+  transform: translateX(-2px);
+}
+
 .pps-btn-primary {
   background: var(--pps-accent);
   color: #fff;
