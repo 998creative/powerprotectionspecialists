@@ -3006,6 +3006,10 @@ img {
 }
 
 @media (max-width: 767px) {
+  .pps-home-service-card {
+    min-height: 24rem;
+  }
+
   .pps-home-sector-content {
     gap: 8px;
     padding: 10px;
