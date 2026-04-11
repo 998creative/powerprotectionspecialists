@@ -2977,6 +2977,33 @@ img {
 }
 
 @media (max-width: 767px) {
+  .pps-home-sector-content {
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .pps-home-sector-icon {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  .pps-home-sector-description {
+    width: 92%;
+    font-size: 0.875rem;
+    line-height: 1.35;
+    transform: translate(-50%, -50%);
+  }
+
+  .pps-home-sector-tile:hover .pps-home-sector-icon,
+  .pps-home-sector-tile:focus-visible .pps-home-sector-icon {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  .pps-home-sector-tile:hover .pps-home-sector-description,
+  .pps-home-sector-tile:focus-visible .pps-home-sector-description {
+    transform: translate(-50%, -50%);
+  }
+
   .pps-footer-grid {
     grid-template-columns: 1fr;
     gap: 24px;
