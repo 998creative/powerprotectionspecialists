@@ -3002,6 +3002,15 @@ img {
 }
 
 @media (max-width: 640px) {
+  .pps-home-who-actions {
+    align-items: stretch;
+  }
+
+  .pps-home-who-actions .pps-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
   .pps-home-form-actions {
     flex-direction: column;
     align-items: stretch;
