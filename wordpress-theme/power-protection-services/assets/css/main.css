@@ -35,6 +35,16 @@ body.pps-site {
   overflow-x: hidden;
 }
 
+body.pps-site h1,
+body.pps-site h2,
+body.pps-site h3,
+body.pps-site h4,
+body.pps-site h5,
+body.pps-site h6 {
+  font-family: inherit;
+  font-weight: 600;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -529,7 +539,7 @@ img {
 
 .pps-hero p {
   margin: 22px 0 0;
-  font-size: 21px;
+  font-size: 20px;
   color: #c2c8d6;
   max-width: 54ch;
 }
@@ -561,8 +571,8 @@ img {
 
 .pps-section h2 {
   margin: 0;
-  font-size: clamp(2.1rem, 3.6vw, 4rem);
-  line-height: 1.06;
+  font-size: clamp(2.25rem, 3.8vw, 3rem);
+  line-height: 1.1;
   color: inherit;
 }
 
@@ -570,7 +580,7 @@ img {
   margin: 16px 0 0;
   max-width: 65ch;
   color: var(--pps-muted);
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .pps-card-grid {
@@ -724,7 +734,7 @@ img {
 
 .pps-slab-intro {
   margin-top: 16px;
-  font-size: 20px;
+  font-size: 18px;
   color: #c4cade;
 }
 
@@ -789,6 +799,7 @@ img {
 .pps-prose h3 {
   color: var(--pps-text-dark);
   line-height: 1.1;
+  font-weight: 600;
 }
 
 .pps-prose a {
@@ -813,6 +824,7 @@ img {
 .pps-panel h3 {
   margin: 0 0 10px;
   color: var(--pps-text-dark);
+  font-weight: 600;
 }
 
 .pps-panel ul {
