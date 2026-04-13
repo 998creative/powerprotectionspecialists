@@ -1877,6 +1877,10 @@ img {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.pps-home-why-mobile {
+  display: none;
+}
+
 .pps-home-why-card {
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
@@ -2289,6 +2293,10 @@ img {
 
   .pps-home-slider-track,
   .pps-home-testimonials-track {
+    transition: none;
+  }
+
+  .pps-home-why-mobile-card {
     transition: none;
   }
 }
@@ -3017,6 +3025,51 @@ img {
 }
 
 @media (max-width: 767px) {
+  .pps-home-why-desktop-copy {
+    display: none;
+  }
+
+  .pps-home-why-mobile {
+    display: block;
+  }
+
+  .pps-home-why-mobile-sticky {
+    position: sticky;
+    top: 80px;
+    z-index: 10;
+    padding-top: 46px;
+  }
+
+  .pps-home-why-mobile-sticky .pps-eyebrow {
+    color: #9ca4b6;
+  }
+
+  .pps-home-why-mobile-sticky h2 {
+    margin-top: 12px;
+    color: #fff;
+    font-size: 2.25rem;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+
+  .pps-home-why-mobile-stage {
+    margin-top: 20px;
+    position: relative;
+    width: 100%;
+    height: 20rem;
+  }
+
+  .pps-home-why-mobile-card {
+    position: absolute;
+    inset: 0;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    will-change: transform, opacity;
+  }
+
+  .pps-home-why-mobile-track {
+    pointer-events: none;
+  }
+
   .pps-home-service-card {
     min-height: 24rem;
   }

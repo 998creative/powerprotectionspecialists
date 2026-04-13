@@ -324,10 +324,10 @@ get_header();
 
 <section id="why-us" class="pps-section pps-home-why">
     <div class="pps-container">
-        <p class="pps-eyebrow">Why Us</p>
-        <h2>Why Choose Power Protection Services</h2>
+        <p class="pps-eyebrow pps-home-why-desktop-copy">Why Us</p>
+        <h2 class="pps-home-why-desktop-copy">Why Choose Power Protection Services</h2>
 
-        <div class="pps-home-why-grid">
+        <div class="pps-home-why-grid pps-home-why-desktop-copy">
             <?php foreach ($why_us_cards as $item) : ?>
                 <article class="pps-home-why-card">
                     <span class="pps-home-why-icon"><?php echo wp_kses($why_icon_svg((string) ($item['icon'] ?? '')), $svg_allowed); ?></span>
@@ -335,6 +335,30 @@ get_header();
                     <p><?php echo esc_html($item['description']); ?></p>
                 </article>
             <?php endforeach; ?>
+        </div>
+
+        <div class="pps-home-why-mobile" data-why-stack>
+            <div class="pps-home-why-mobile-sticky">
+                <p class="pps-eyebrow">Why Us</p>
+                <h2>Why Choose Power Protection Services</h2>
+
+                <div class="pps-home-why-mobile-stage" data-why-stack-stage>
+                    <?php foreach ($why_us_cards as $item) : ?>
+                        <article class="pps-home-why-card pps-home-why-mobile-card" data-why-card>
+                            <span class="pps-home-why-icon"><?php echo wp_kses($why_icon_svg((string) ($item['icon'] ?? '')), $svg_allowed); ?></span>
+                            <h3><?php echo esc_html($item['title']); ?></h3>
+                            <p><?php echo esc_html($item['description']); ?></p>
+                        </article>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+
+            <div
+                class="pps-home-why-mobile-track"
+                data-why-stack-track
+                style="height: <?php echo esc_attr(max(0, (count($why_us_cards) - 1) * 70)); ?>svh;"
+                aria-hidden="true"
+            ></div>
         </div>
     </div>
 </section>

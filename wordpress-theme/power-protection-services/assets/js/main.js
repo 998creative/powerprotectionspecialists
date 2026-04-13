@@ -844,9 +844,112 @@
     });
   };
 
+  const initWhyUsStackCards = () => {
+    const stacks = Array.from(document.querySelectorAll('[data-why-stack]'));
+
+    if (stacks.length === 0) {
+      return;
+    }
+
+    const isMobileViewport = () => window.matchMedia('(max-width: 767px)').matches;
+    const stickyTopOffset = 80;
+    const mobileCardOffset = 20;
+    const mobileCardStartY = 520;
+    let ticking = false;
+
+    const updateStacks = () => {
+      stacks.forEach((stack) => {
+        if (!(stack instanceof HTMLElement)) {
+          return;
+        }
+
+        const stage = stack.querySelector('[data-why-stack-stage]');
+        const track = stack.querySelector('[data-why-stack-track]');
+        const cards = Array.from(stack.querySelectorAll('[data-why-card]'));
+
+        if (
+          !(stage instanceof HTMLElement) ||
+          !(track instanceof HTMLElement) ||
+          cards.length === 0
+        ) {
+          return;
+        }
+
+        if (!isMobileViewport()) {
+          cards.forEach((card, index) => {
+            if (!(card instanceof HTMLElement)) {
+              return;
+            }
+
+            card.style.transform = `translateY(${index * mobileCardOffset}px)`;
+            card.style.opacity = '1';
+            card.style.zIndex = String(index + 1);
+          });
+          return;
+        }
+
+        const stackRect = stack.getBoundingClientRect();
+        const scrollableDistance = track.offsetHeight;
+
+        let mobileProgress = 0;
+        if (scrollableDistance > 0) {
+          const rawProgress = (stickyTopOffset - stackRect.top) / scrollableDistance;
+          const clampedProgress = Math.min(1, Math.max(0, rawProgress));
+          mobileProgress = clampedProgress * (cards.length - 1);
+        }
+
+        cards.forEach((card, index) => {
+          if (!(card instanceof HTMLElement)) {
+            return;
+          }
+
+          const settleOffset = index * mobileCardOffset;
+          let translateY = settleOffset;
+          let opacity = 1;
+
+          if (index > 0) {
+            const enterStart = index - 1;
+            const enterEnd = index;
+
+            if (mobileProgress <= enterStart) {
+              translateY = mobileCardStartY + settleOffset;
+              opacity = 0;
+            } else if (mobileProgress < enterEnd) {
+              const t = mobileProgress - enterStart;
+              translateY =
+                (1 - t) * (mobileCardStartY + settleOffset) + t * settleOffset;
+              opacity = Math.min(1, t * 1.8);
+            }
+          }
+
+          card.style.transform = `translateY(${translateY}px)`;
+          card.style.opacity = String(opacity);
+          card.style.zIndex = String(index + 1);
+        });
+      });
+    };
+
+    const requestUpdate = () => {
+      if (ticking) {
+        return;
+      }
+
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        updateStacks();
+        ticking = false;
+      });
+    };
+
+    updateStacks();
+    window.addEventListener('scroll', requestUpdate, { passive: true });
+    window.addEventListener('resize', requestUpdate);
+  };
+
   initNavigation();
   initHomeSliders();
   initHomeContactForm();
   initManuals();
   initFooterAccordion();
+  initWhyUsStackCards();
 })();
