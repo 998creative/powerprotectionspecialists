@@ -1801,6 +1801,11 @@ img {
   object-fit: contain;
 }
 
+.pps-home-client-logo img[src*="kingspan.png"],
+.pps-home-client-logo img[src*="university-of-essex.png"] {
+  max-height: 44px;
+}
+
 .pps-home-testimonials {
   border-bottom: 1px solid #d9e1f1;
   background: #f4f8fe;
