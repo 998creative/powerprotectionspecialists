@@ -126,9 +126,24 @@ $maps_href   = 'https://www.google.com/maps/search/?api=1&query=Power+Protection
                 <span aria-hidden="true" class="pps-footer-mobile-chevron">▾</span>
             </button>
             <div class="pps-footer-mobile-panel pps-footer-mobile-contact" data-footer-panel="contact">
-                <a href="mailto:contact@powerprotectionservices.co.uk">contact@powerprotectionservices.co.uk</a>
-                <a href="tel:01488685207">01488 685207</a>
+                <a href="mailto:contact@powerprotectionservices.co.uk">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <rect x="3.5" y="5.5" width="17" height="13" rx="2" stroke-width="1.8" />
+                        <path d="M4.5 7.5 12 13l7.5-5.5" stroke-width="1.8" stroke-linecap="round" />
+                    </svg>
+                    <span>contact@powerprotectionservices.co.uk</span>
+                </a>
+                <a href="tel:01488685207">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M7.8 4.8 10.4 7c.6.5.8 1.4.4 2l-1.1 1.8c1 2 2.7 3.7 4.7 4.7l1.8-1.1c.7-.4 1.5-.2 2 .4l2.2 2.6c.6.7.5 1.8-.3 2.3-1 .7-2.2 1.1-3.4 1-2.4-.1-5.5-1.4-8.3-4.2S4.3 13.6 4.2 11.2c0-1.2.3-2.4 1-3.4.6-.8 1.6-.9 2.3-.3Z" stroke-width="1.8" stroke-linejoin="round" />
+                    </svg>
+                    <span>01488 685207</span>
+                </a>
                 <a href="<?php echo esc_url($maps_href); ?>" target="_blank" rel="noreferrer noopener">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M12 21s-5.5-4.7-5.5-9.3a5.5 5.5 0 1 1 11 0C17.5 16.3 12 21 12 21Z" stroke-width="1.8" stroke-linejoin="round" />
+                        <circle cx="12" cy="11.7" r="2.1" stroke-width="1.8" />
+                    </svg>
                     <span>
                         Power Protection Services Ltd<br />
                         Unit 2 Neates Yard<br />
