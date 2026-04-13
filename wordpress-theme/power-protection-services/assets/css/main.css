@@ -3025,6 +3025,10 @@ img {
 }
 
 @media (max-width: 767px) {
+  .pps-home-why {
+    padding-bottom: 5.5rem;
+  }
+
   .pps-home-why-desktop-copy {
     display: none;
   }
