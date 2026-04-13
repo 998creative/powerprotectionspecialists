@@ -673,9 +673,9 @@ function pps_client_logos_data(): array
 {
     return [
         [
-            'name' => 'University of Oxford',
-            'image' => 'client-logos/University_of_Oxford-Logo.wine.png',
-            'alt' => 'University of Oxford client logo',
+            'name' => 'Kingspan',
+            'image' => 'client-logos/kingspan.png',
+            'alt' => 'Kingspan client logo',
         ],
         [
             'name' => 'NHS',
@@ -683,19 +683,29 @@ function pps_client_logos_data(): array
             'alt' => 'NHS client logo',
         ],
         [
-            'name' => 'Vodafone',
-            'image' => 'client-logos/Vodafone_logo_2017.png',
-            'alt' => 'Vodafone client logo',
+            'name' => 'Schaeffler',
+            'image' => 'client-logos/schaeffler.png',
+            'alt' => 'Schaeffler client logo',
         ],
         [
-            'name' => 'Stryker',
-            'image' => 'client-logos/Stryker_Corporation_logo.png',
-            'alt' => 'Stryker client logo',
+            'name' => 'University of Essex',
+            'image' => 'client-logos/university-of-essex.png',
+            'alt' => 'University of Essex client logo',
         ],
         [
-            'name' => 'West Berkshire Council',
-            'image' => 'client-logos/westberks.png',
-            'alt' => 'West Berkshire Council client logo',
+            'name' => 'CF',
+            'image' => 'client-logos/cf-logo.png',
+            'alt' => 'CF client logo',
+        ],
+        [
+            'name' => 'Snap-on',
+            'image' => 'client-logos/snap-on.png',
+            'alt' => 'Snap-on client logo',
+        ],
+        [
+            'name' => 'Waterstones',
+            'image' => 'client-logos/waterstones.png',
+            'alt' => 'Waterstones client logo',
         ],
     ];
 }
