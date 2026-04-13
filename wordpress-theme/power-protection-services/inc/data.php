@@ -9,6 +9,45 @@ if (! defined('ABSPATH')) {
     exit;
 }
 
+function pps_service_url(string $primary_slug, ?string $legacy_slug = null): string
+{
+    $candidates = array_values(array_filter(array_unique([$primary_slug, $legacy_slug])));
+
+    foreach ($candidates as $candidate) {
+        $page = get_page_by_path('services/' . $candidate, OBJECT, 'page');
+        if ($page) {
+            $permalink = get_permalink($page);
+            if (is_string($permalink) && '' !== $permalink) {
+                return $permalink;
+            }
+        }
+    }
+
+    return home_url('/services/' . $primary_slug . '/');
+}
+
+function pps_service_slug_aliases(): array
+{
+    return [
+        'site-surveys' => 'maintenance-health-checks',
+        'maintenance-health-checks' => 'maintenance-health-checks',
+        'emergency-lighting' => 'ups-sales-supply-only',
+        'ups-sales-supply-only' => 'ups-sales-supply-only',
+        'electrical-installation' => 'ups-removal-disposal',
+        'ups-removal-disposal' => 'ups-removal-disposal',
+        'full-installation' => 'ups-installation',
+        'ups-installation' => 'ups-installation',
+        'ups-battery-replacement' => 'ups-battery-replacement',
+        'equipment-relocation' => 'equipment-relocation',
+    ];
+}
+
+function pps_normalize_service_slug(string $slug): string
+{
+    $aliases = pps_service_slug_aliases();
+    return $aliases[$slug] ?? $slug;
+}
+
 function pps_services_data(): array
 {
     static $data = null;
@@ -19,24 +58,10 @@ function pps_services_data(): array
 
     $data = [
         [
-            'title' => 'Maintenance & Health Checks',
-            'hero_title' => 'Maintenance & Health Checks',
-            'slug'  => 'site-surveys',
-            'href'  => home_url('/services/site-surveys/'),
-            'description' => 'Planned maintenance and detailed health checks to keep UPS systems reliable, safe, and ready.',
-            'image' => 'services/services-site-surveys.jpg',
-            'image_alt' => 'Site assessment taking place in a commercial environment',
-            'highlights' => [
-                'Scheduled service visits and preventive maintenance',
-                'Runtime, load, and component condition checks',
-                'Clear reporting with prioritised next-step actions',
-            ],
-        ],
-        [
             'title' => 'UPS Sales & Supply Only',
             'hero_title' => 'UPS Sales & Supply Only',
-            'slug'  => 'emergency-lighting',
-            'href'  => home_url('/services/emergency-lighting/'),
+            'slug'  => 'ups-sales-supply-only',
+            'href'  => pps_service_url('ups-sales-supply-only', 'emergency-lighting'),
             'description' => 'Independent UPS product supply with practical specification advice for direct procurement projects.',
             'image' => 'services/services-standby.jpg',
             'image_alt' => 'Critical power infrastructure used in emergency backup systems',
@@ -47,10 +72,52 @@ function pps_services_data(): array
             ],
         ],
         [
+            'title' => 'UPS Installation',
+            'hero_title' => 'UPS Installation',
+            'slug'  => 'ups-installation',
+            'href'  => pps_service_url('ups-installation', 'full-installation'),
+            'description' => 'Complete end-to-end delivery from survey and design through installation, commissioning, and handover.',
+            'image' => 'services/services-full-installation.jpg',
+            'image_alt' => 'Technician installing power protection systems on site',
+            'highlights' => [
+                'Survey, design, supply, and installation',
+                'Commissioning and acceptance testing',
+                'Documentation and operational handover',
+            ],
+        ],
+        [
+            'title' => 'Maintenance & Health Checks',
+            'hero_title' => 'Maintenance & Health Checks',
+            'slug'  => 'maintenance-health-checks',
+            'href'  => pps_service_url('maintenance-health-checks', 'site-surveys'),
+            'description' => 'Planned maintenance and detailed health checks to keep UPS systems reliable, safe, and ready.',
+            'image' => 'services/services-site-surveys.jpg',
+            'image_alt' => 'Site assessment taking place in a commercial environment',
+            'highlights' => [
+                'Scheduled service visits and preventive maintenance',
+                'Runtime, load, and component condition checks',
+                'Clear reporting with prioritised next-step actions',
+            ],
+        ],
+        [
+            'title' => 'UPS Battery Replacement',
+            'hero_title' => 'UPS Battery Replacement',
+            'slug'  => 'ups-battery-replacement',
+            'href'  => pps_service_url('ups-battery-replacement'),
+            'description' => 'Battery testing, supply, and replacement to protect runtime and overall UPS reliability.',
+            'image' => 'services/services-batteries.jpg',
+            'image_alt' => 'UPS battery system components and power infrastructure',
+            'highlights' => [
+                'Battery health checks and condition reporting',
+                'Scheduled and reactive replacement',
+                'Performance validation after installation',
+            ],
+        ],
+        [
             'title' => 'UPS Removal & Disposal',
             'hero_title' => 'UPS Removal & Disposal',
-            'slug'  => 'electrical-installation',
-            'href'  => home_url('/services/electrical-installation/'),
+            'slug'  => 'ups-removal-disposal',
+            'href'  => pps_service_url('ups-removal-disposal', 'electrical-installation'),
             'description' => 'Safe decommissioning, removal, and compliant disposal of legacy UPS systems and related hardware.',
             'image' => 'services/services-electrical-installation.jpg',
             'image_alt' => 'Commercial electrical installation works in progress',
@@ -64,7 +131,7 @@ function pps_services_data(): array
             'title' => 'Equipment Relocation',
             'hero_title' => 'Equipment Relocation',
             'slug'  => 'equipment-relocation',
-            'href'  => home_url('/services/equipment-relocation/'),
+            'href'  => pps_service_url('equipment-relocation'),
             'description' => 'Safe de-commissioning, transport, and re-commissioning for UPS and related critical equipment.',
             'image' => 'services/services-relocation-pexels-2804929.jpg',
             'image_alt' => 'Logistics and transport planning for equipment relocation',
@@ -74,34 +141,6 @@ function pps_services_data(): array
                 'Post-move testing and handover support',
             ],
         ],
-        [
-            'title' => 'UPS Installation',
-            'hero_title' => 'UPS Installation',
-            'slug'  => 'full-installation',
-            'href'  => home_url('/services/full-installation/'),
-            'description' => 'Complete end-to-end delivery from survey and design through installation, commissioning, and handover.',
-            'image' => 'services/services-full-installation.jpg',
-            'image_alt' => 'Technician installing power protection systems on site',
-            'highlights' => [
-                'Survey, design, supply, and installation',
-                'Commissioning and acceptance testing',
-                'Documentation and operational handover',
-            ],
-        ],
-        [
-            'title' => 'UPS Battery Replacement',
-            'hero_title' => 'UPS Battery Replacement',
-            'slug'  => 'ups-battery-replacement',
-            'href'  => home_url('/services/ups-battery-replacement/'),
-            'description' => 'Battery testing, supply, and replacement to protect runtime and overall UPS reliability.',
-            'image' => 'services/services-batteries.jpg',
-            'image_alt' => 'UPS battery system components and power infrastructure',
-            'highlights' => [
-                'Battery health checks and condition reporting',
-                'Scheduled and reactive replacement',
-                'Performance validation after installation',
-            ],
-        ],
     ];
 
     return $data;
@@ -109,8 +148,10 @@ function pps_services_data(): array
 
 function pps_get_service_by_slug(string $slug): ?array
 {
+    $normalized_slug = pps_normalize_service_slug($slug);
+
     foreach (pps_services_data() as $service) {
-        if (($service['slug'] ?? '') === $slug) {
+        if (($service['slug'] ?? '') === $normalized_slug) {
             return $service;
         }
     }

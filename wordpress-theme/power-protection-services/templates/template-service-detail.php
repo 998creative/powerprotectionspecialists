@@ -12,6 +12,7 @@ if (! defined('ABSPATH')) {
 
 $slug = (string) get_post_field('post_name', get_queried_object_id());
 $service = pps_get_service_by_slug($slug);
+$normalized_slug = pps_normalize_service_slug($slug);
 
 $eyebrow = 'Services';
 $title = $service['hero_title'] ?? pps_page_heading('Service');
@@ -33,7 +34,7 @@ $hero_actions = [
 $highlights = is_array($service['highlights'] ?? null) ? $service['highlights'] : [];
 $other_services = array_values(array_filter(
     pps_services_data(),
-    static fn(array $item): bool => ($item['slug'] ?? '') !== $slug
+    static fn(array $item): bool => ($item['slug'] ?? '') !== $normalized_slug
 ));
 
 get_header();

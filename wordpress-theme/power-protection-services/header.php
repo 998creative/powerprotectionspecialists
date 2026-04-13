@@ -22,15 +22,15 @@ $svg_allowed = [
 
 $service_icon_svg = static function (string $slug): string {
     switch ($slug) {
-        case 'site-surveys':
+        case 'maintenance-health-checks':
             return '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5.2" y="4.2" width="13.6" height="15.6" rx="2" stroke-width="1.8" /><path d="m8.4 10.3 1.8 1.8 3.6-3.6M8.4 15.2h7.2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>';
-        case 'emergency-lighting':
+        case 'ups-sales-supply-only':
             return '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4.2a5.1 5.1 0 0 0-3.6 8.7c.9.9 1.4 2 1.4 3.2h4.4c0-1.2.5-2.3 1.4-3.2A5.1 5.1 0 0 0 12 4.2Z" stroke-width="1.8" stroke-linejoin="round" /><path d="M9.7 18.2h4.6M10.4 20.1h3.2" stroke-width="1.8" stroke-linecap="round" /></svg>';
-        case 'electrical-installation':
+        case 'ups-removal-disposal':
             return '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.8 5.2 7.2v9.6l6.8 3.4 6.8-3.4V7.2L12 3.8Z" stroke-width="1.8" stroke-linejoin="round" /><path d="M12 8.4v7.2M8.6 10.1 12 12l3.4-1.9" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>';
         case 'equipment-relocation':
             return '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4.2" y="7.2" width="8.8" height="8.8" rx="1.6" stroke-width="1.8" /><path d="M11.8 12h8M16.2 8.6 19.8 12l-3.6 3.4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>';
-        case 'full-installation':
+        case 'ups-installation':
             return '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.8 5.4 6.8v5.7c0 4 2.9 6.8 6.6 7.8 3.7-1 6.6-3.8 6.6-7.8V6.8L12 3.8Z" stroke-width="1.8" stroke-linejoin="round" /><path d="m9.1 12.1 2 2 3.8-3.8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>';
         case 'ups-battery-replacement':
             return '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="7" width="15.8" height="10" rx="2.2" stroke-width="1.8" /><path d="M19.8 10h1.8v4h-1.8M10 9.5v5M7.5 12h5" stroke-width="1.8" stroke-linecap="round" /></svg>';

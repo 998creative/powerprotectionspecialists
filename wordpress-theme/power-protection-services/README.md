@@ -60,12 +60,15 @@ Create these pages/slugs:
 
 Create child pages under `/services/` and set template **Service Detail**:
 
-- `/services/site-surveys/`
-- `/services/emergency-lighting/`
-- `/services/electrical-installation/`
-- `/services/equipment-relocation/`
-- `/services/full-installation/`
+- `/services/ups-sales-supply-only/`
+- `/services/ups-installation/`
+- `/services/maintenance-health-checks/`
 - `/services/ups-battery-replacement/`
+- `/services/ups-removal-disposal/`
+- `/services/equipment-relocation/`
+
+Legacy service slugs are still supported for backward compatibility:
+`/services/site-surveys/`, `/services/emergency-lighting/`, `/services/electrical-installation/`, `/services/full-installation/`.
 
 Create child pages under `/who-can-we-help/` and set template **Sector Detail**:
 
