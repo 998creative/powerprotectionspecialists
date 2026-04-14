@@ -3590,37 +3590,36 @@ body.page-about .pps-hero {
 
   .pps-about-cards-mobile {
     display: block;
-    margin-top: 8px;
+    margin-top: 0;
   }
 
-  .pps-about-cards-mobile-sticky {
-    position: sticky;
-    top: 80px;
-    z-index: 10;
-    padding-top: 46px;
+  .pps-about-cards .pps-home-why-mobile-sticky .pps-eyebrow {
+    color: #5f759e;
   }
 
-  .pps-about-cards-mobile-sticky h2 {
+  .pps-about-cards .pps-home-why-mobile-sticky h2 {
     margin-top: 12px;
+    color: #0b1324;
+    font-size: var(--pps-type-heading);
+    line-height: 1.14;
+    letter-spacing: -0.015em;
   }
 
-  .pps-about-cards-mobile-stage {
-    margin-top: 20px;
-    position: relative;
-    width: 100%;
-    height: 24rem;
+  .pps-about-cards .pps-home-why-mobile-stage {
+    height: 20rem;
   }
 
-  .pps-about-cards-mobile-card {
-    position: absolute;
-    inset: 0;
-    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
-    will-change: transform, opacity;
-    pointer-events: none;
+  .pps-about-cards .pps-home-why-mobile-card {
+    border: 1px solid #d6dff0;
+    background: #f8fbff;
   }
 
-  .pps-about-cards-mobile-track {
-    pointer-events: none;
+  .pps-about-cards .pps-home-why-mobile-card h3 {
+    color: #0b1324;
+  }
+
+  .pps-about-cards .pps-home-why-mobile-card p {
+    color: #41547a;
   }
 
   .pps-about-cards .pps-section-intro {

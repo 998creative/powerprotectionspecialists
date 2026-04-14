@@ -155,13 +155,13 @@ get_template_part('partials/hero', null, [
                 </article>
             <?php endforeach; ?>
         </div>
-        <div class="pps-about-cards-mobile" data-why-stack>
-            <div class="pps-about-cards-mobile-sticky">
+        <div class="pps-about-cards-mobile pps-home-why-mobile" data-why-stack>
+            <div class="pps-about-cards-mobile-sticky pps-home-why-mobile-sticky">
                 <p class="pps-eyebrow">What We Do</p>
                 <h2>Independent Advice Across Major Manufacturers</h2>
-                <div class="pps-about-cards-mobile-stage" data-why-stack-stage>
+                <div class="pps-about-cards-mobile-stage pps-home-why-mobile-stage" data-why-stack-stage>
                     <?php foreach ($about_cards as $item) : ?>
-                        <article class="pps-card pps-support-card pps-about-cards-mobile-card" data-why-card>
+                        <article class="pps-card pps-support-card pps-about-cards-mobile-card pps-home-why-mobile-card" data-why-card>
                             <div class="pps-about-card-icon">
                                 <?php echo wp_kses($about_icon_svg((string) ($item['icon'] ?? '')), $svg_allowed); ?>
                             </div>
@@ -172,7 +172,7 @@ get_template_part('partials/hero', null, [
                 </div>
             </div>
             <div
-                class="pps-about-cards-mobile-track"
+                class="pps-about-cards-mobile-track pps-home-why-mobile-track"
                 data-why-stack-track
                 style="height: <?php echo esc_attr(max(0, (count($about_cards) - 1) * 70)); ?>svh;"
                 aria-hidden="true"
