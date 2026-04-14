@@ -140,9 +140,11 @@ get_template_part('partials/hero', null, [
 
 <section class="pps-section pps-section-light pps-about-cards">
     <div class="pps-container">
-        <p class="pps-eyebrow">What We Do</p>
-        <h2>Independent Advice Across Major Manufacturers</h2>
-        <div class="pps-card-grid pps-card-grid-3">
+        <div class="pps-about-cards-desktop-copy">
+            <p class="pps-eyebrow">What We Do</p>
+            <h2>Independent Advice Across Major Manufacturers</h2>
+        </div>
+        <div class="pps-about-cards-desktop-grid pps-card-grid pps-card-grid-3">
             <?php foreach ($about_cards as $item) : ?>
                 <article class="pps-card pps-support-card">
                     <div class="pps-about-card-icon">
@@ -152,6 +154,24 @@ get_template_part('partials/hero', null, [
                     <p><?php echo esc_html($item['description']); ?></p>
                 </article>
             <?php endforeach; ?>
+        </div>
+        <div class="pps-about-cards-mobile" data-about-cards-stack>
+            <div class="pps-about-cards-mobile-sticky">
+                <p class="pps-eyebrow">What We Do</p>
+                <h2>Independent Advice Across Major Manufacturers</h2>
+                <div class="pps-about-cards-mobile-stage" data-about-cards-stage>
+                    <?php foreach ($about_cards as $item) : ?>
+                        <article class="pps-card pps-support-card pps-about-cards-mobile-card" data-about-card>
+                            <div class="pps-about-card-icon">
+                                <?php echo wp_kses($about_icon_svg((string) ($item['icon'] ?? '')), $svg_allowed); ?>
+                            </div>
+                            <h3><?php echo esc_html($item['title']); ?></h3>
+                            <p><?php echo esc_html($item['description']); ?></p>
+                        </article>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+            <div class="pps-about-cards-mobile-track" data-about-cards-track aria-hidden="true"></div>
         </div>
         <p class="pps-section-intro">
             Our customers include universities, hospitals, city and county councils, corporate organisations, electrical contractors, IT resellers, project management companies and consultants. Our goal is always the same: the highest level of service and support by combining practical expertise with dedicated care.
@@ -165,7 +185,7 @@ get_template_part('partials/hero', null, [
         <h2>Timeline of Growth</h2>
         <p class="pps-section-intro">Built steadily since incorporation, with practical experience across installation, maintenance, and long-term support.</p>
         <div class="pps-about-timeline-grid" data-about-timeline>
-            <ol class="pps-about-timeline-list">
+            <ol class="pps-about-timeline-list" style="--pps-timeline-count: <?php echo esc_attr((string) count($timeline_items)); ?>;">
                 <?php foreach ($timeline_items as $index => $item) : ?>
                     <li class="<?php echo 0 === $index ? 'is-active' : ''; ?>" data-about-timeline-item data-about-index="<?php echo esc_attr((string) $index); ?>" tabindex="0">
                         <p><?php echo esc_html($item['date']); ?></p>
