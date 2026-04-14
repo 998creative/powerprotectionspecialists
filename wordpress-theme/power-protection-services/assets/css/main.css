@@ -2762,6 +2762,23 @@ body.page-about .pps-hero {
   max-width: 68ch;
 }
 
+/* Defensive guard: About cards should always be normal cards, never stack/pin. */
+body.page-about .pps-about-cards [data-about-stack],
+body.page-about .pps-about-cards [data-why-stack],
+body.page-about .pps-about-cards .pps-about-cards-mobile {
+  display: none !important;
+}
+
+body.page-about .pps-about-cards .pps-card-grid {
+  overflow: visible !important;
+}
+
+body.page-about .pps-about-cards .pps-card {
+  position: static !important;
+  transform: none !important;
+  opacity: 1 !important;
+}
+
 .pps-about-timeline {
   position: relative;
   overflow: hidden;

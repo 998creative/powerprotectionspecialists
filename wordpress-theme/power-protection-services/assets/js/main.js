@@ -973,7 +973,7 @@
   };
 
   const initWhyUsStackCards = () => {
-    const stacks = Array.from(document.querySelectorAll('[data-why-stack]'));
+    const stacks = Array.from(document.querySelectorAll('#why-us [data-why-stack]'));
 
     if (stacks.length === 0) {
       return;
