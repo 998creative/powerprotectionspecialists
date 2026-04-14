@@ -190,15 +190,22 @@ get_template_part('partials/hero', null, [
     </div>
 </section>
 
-<section class="pps-section pps-section-dark">
-    <div class="pps-container pps-cta-block pps-cta-block-dark">
+<section class="pps-about-cta-strip">
+    <div class="pps-container pps-about-cta-strip-inner">
         <div>
             <h2>Let&apos;s plan the right solution for your site.</h2>
             <p>Get in touch for free, unbiased professional advice on UPS and critical power infrastructure.</p>
         </div>
         <div class="pps-cta-buttons">
             <a class="pps-btn pps-btn-primary" href="<?php echo esc_url(home_url('/contact/#contact')); ?>">Contact Us</a>
-            <a class="pps-btn pps-btn-secondary" href="tel:01488685207">01488 685207</a>
+            <a class="pps-btn pps-btn-secondary pps-btn--icon pps-btn--icon-left" href="tel:01488685207">
+                <span class="pps-btn-icon">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M7.8 4.8 10.4 7c.6.5.8 1.4.4 2l-1.1 1.8c1 2 2.7 3.7 4.7 4.7l1.8-1.1c.7-.4 1.5-.2 2 .4l2.2 2.6c.6.7.5 1.8-.3 2.3-1 .7-2.2 1.1-3.4 1-2.4-.1-5.5-1.4-8.3-4.2S4.3 13.6 4.2 11.2c0-1.2.3-2.4 1-3.4.6-.8 1.6-.9 2.3-.3Z" stroke-width="1.8" stroke-linejoin="round" />
+                    </svg>
+                </span>
+                01488 685207
+            </a>
         </div>
     </div>
 </section>
