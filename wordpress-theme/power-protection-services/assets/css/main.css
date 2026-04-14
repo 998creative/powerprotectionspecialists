@@ -1382,15 +1382,11 @@ img {
   border: 1px solid #d6dff0;
   background: #f8fbff;
   border-radius: 24px;
-  padding: 12px;
+  padding: 16px;
 }
 
 .pps-home-about-media-frame {
-  position: absolute;
-  inset: 20px;
-  border: 1px solid #dce4f2;
-  border-radius: 20px;
-  pointer-events: none;
+  display: none;
 }
 
 .pps-home-about-media-wrap img {
@@ -2205,7 +2201,7 @@ img {
   }
 
   .pps-home-about-media-wrap {
-    padding: 20px;
+    padding: 16px;
   }
 
   .pps-home-about-media-wrap img {
@@ -3182,7 +3178,4 @@ img {
     padding: 12px;
   }
 
-  .pps-home-about-media-frame {
-    inset: 12px;
-  }
 }
