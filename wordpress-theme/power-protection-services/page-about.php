@@ -12,7 +12,7 @@ if (! defined('ABSPATH')) {
 $eyebrow = 'About Us';
 $title = 'Independent power protection specialists for over 25 years';
 $description = 'We help organisations protect critical systems with dependable UPS and backup power solutions.';
-$hero_background = 'hero/about-carl-lindy-team-photo.jpg';
+$hero_background = 'hero/about-office.jpg';
 $hero_actions = [
     [
         'label' => 'Speak to Our Team',
@@ -21,7 +21,7 @@ $hero_actions = [
     ],
     [
         'label' => 'View Services',
-        'href' => home_url('/services/'),
+        'href' => home_url('/#services'),
         'primary' => false,
     ],
 ];
@@ -30,14 +30,17 @@ $about_cards = [
     [
         'title' => 'Truly Independent',
         'description' => 'We can supply products from major manufacturers including Chloride Power Electronics, Emerson Network Power, Eaton, Powerware, APC and more, so recommendations are based on fit, not vendor bias.',
+        'icon' => 'independent',
     ],
     [
         'title' => 'End-to-End Delivery',
         'description' => 'From site surveys and installation through delivery, offloading, positioning, commissioning, battery health checks and replacements, we provide full turnkey support for larger systems.',
+        'icon' => 'delivery',
     ],
     [
         'title' => 'Long-Term Support',
         'description' => 'Manufacturer warranties, optional extended cover, tailored maintenance schedules, guaranteed response options, and routine service visits are all available to suit your requirements.',
+        'icon' => 'support',
     ],
 ];
 
@@ -46,26 +49,69 @@ $timeline_items = [
         'date' => 'May 2000',
         'title' => 'Incorporation',
         'description' => 'The business was incorporated with a clear mission: offer genuinely independent advice on critical power protection.',
+        'image' => 'hero/about-office.jpg',
+        'image_alt' => 'Office workspace representing the company at incorporation',
     ],
     [
         'date' => '2004 - 2008',
         'title' => 'Expanded Access & Sector Growth',
         'description' => 'We broadened manufacturer access and saw strong growth across healthcare and education as demand increased for resilient power infrastructure.',
+        'image' => 'services/services-site-surveys.jpg',
+        'image_alt' => 'Power system planning and site assessment work',
     ],
     [
         'date' => '2012',
         'title' => 'Turnkey Delivery Model',
         'description' => 'Site surveys, installation, battery replacement, commissioning, and support were combined into one joined-up service.',
+        'image' => 'services/services-full-installation.jpg',
+        'image_alt' => 'Engineers completing UPS installation and commissioning',
     ],
     [
         'date' => '2016 - 2019',
         'title' => 'Support & Monitoring Enhanced',
         'description' => 'We strengthened service coverage with tailored maintenance options, faster response pathways, and improved remote monitoring capabilities.',
+        'image' => 'hero/services-maintenance.jpg',
+        'image_alt' => 'Maintenance and monitoring of critical power systems',
     ],
     [
         'date' => '2023 - Today',
         'title' => 'Broader Reach, Same Dedicated Care',
         'description' => 'Our portfolio has broadened across councils, corporate organisations, IT resellers, and consultants while we remain a close-knit team focused on practical, responsive support.',
+        'image' => 'hero/about-carl-lindy-team-photo.jpg',
+        'image_alt' => 'Power Protection Services team photo',
+    ],
+];
+
+$about_icon_svg = static function (string $icon): string {
+    switch ($icon) {
+        case 'independent':
+            return '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.8 5.2 7.2v9.6l6.8 3.4 6.8-3.4V7.2L12 3.8Z" stroke-width="1.8" stroke-linejoin="round" /><path d="M9 12.2 11.2 14.4 15.6 10" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>';
+        case 'delivery':
+            return '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4.2 7.5h15.6M4.2 12h15.6M4.2 16.5h15.6" stroke-width="1.8" stroke-linecap="round" /><path d="M14.6 5.6 19.6 12l-5 6.4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>';
+        case 'support':
+            return '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="7.8" stroke-width="1.8" /><path d="M12 7.8v4.8l3.2 2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>';
+        default:
+            return '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.2" stroke-width="1.8" /></svg>';
+    }
+};
+
+$svg_allowed = [
+    'svg' => [
+        'viewBox' => true,
+        'fill' => true,
+        'aria-hidden' => true,
+    ],
+    'path' => [
+        'd' => true,
+        'stroke-width' => true,
+        'stroke-linecap' => true,
+        'stroke-linejoin' => true,
+    ],
+    'circle' => [
+        'cx' => true,
+        'cy' => true,
+        'r' => true,
+        'stroke-width' => true,
     ],
 ];
 
@@ -78,7 +124,7 @@ get_template_part('partials/hero', null, [
     'hero_actions' => $hero_actions ?? [],
 ]);
 ?>
-<section class="pps-section pps-section-light pps-section-muted pps-about-intro">
+<section class="pps-section pps-section-light pps-about-intro">
     <div class="pps-container pps-two-col">
         <div class="pps-prose">
             <h2>Friendly specialists. Personal support.</h2>
@@ -99,6 +145,9 @@ get_template_part('partials/hero', null, [
         <div class="pps-card-grid pps-card-grid-3">
             <?php foreach ($about_cards as $item) : ?>
                 <article class="pps-card pps-support-card">
+                    <div class="pps-about-card-icon">
+                        <?php echo wp_kses($about_icon_svg((string) ($item['icon'] ?? '')), $svg_allowed); ?>
+                    </div>
                     <h3><?php echo esc_html($item['title']); ?></h3>
                     <p><?php echo esc_html($item['description']); ?></p>
                 </article>
@@ -115,15 +164,29 @@ get_template_part('partials/hero', null, [
         <p class="pps-eyebrow">Our Journey</p>
         <h2>Timeline of Growth</h2>
         <p class="pps-section-intro">Built steadily since incorporation, with practical experience across installation, maintenance, and long-term support.</p>
-        <ol class="pps-about-timeline-list">
-            <?php foreach ($timeline_items as $item) : ?>
-                <li>
-                    <p><?php echo esc_html($item['date']); ?></p>
-                    <h3><?php echo esc_html($item['title']); ?></h3>
-                    <span><?php echo esc_html($item['description']); ?></span>
-                </li>
-            <?php endforeach; ?>
-        </ol>
+        <div class="pps-about-timeline-grid" data-about-timeline>
+            <ol class="pps-about-timeline-list">
+                <?php foreach ($timeline_items as $index => $item) : ?>
+                    <li class="<?php echo 0 === $index ? 'is-active' : ''; ?>" data-about-timeline-item data-about-index="<?php echo esc_attr((string) $index); ?>" tabindex="0">
+                        <p><?php echo esc_html($item['date']); ?></p>
+                        <h3><?php echo esc_html($item['title']); ?></h3>
+                        <span><?php echo esc_html($item['description']); ?></span>
+                    </li>
+                <?php endforeach; ?>
+            </ol>
+            <aside class="pps-about-timeline-media">
+                <?php foreach ($timeline_items as $index => $item) : ?>
+                    <figure class="pps-about-timeline-media-item <?php echo 0 === $index ? 'is-active' : ''; ?>" data-about-media-item data-about-media-index="<?php echo esc_attr((string) $index); ?>">
+                        <img src="<?php echo esc_url(pps_image_url((string) ($item['image'] ?? 'hero/about-carl-lindy-team-photo.jpg'))); ?>" alt="<?php echo esc_attr((string) ($item['image_alt'] ?? $item['title'])); ?>" />
+                    </figure>
+                <?php endforeach; ?>
+                <div class="pps-about-timeline-media-overlay">
+                    <p class="pps-about-timeline-media-date" data-about-media-date><?php echo esc_html($timeline_items[0]['date']); ?></p>
+                    <p class="pps-about-timeline-media-title" data-about-media-title><?php echo esc_html($timeline_items[0]['title']); ?></p>
+                </div>
+            </aside>
+        </div>
+        <p class="pps-about-timeline-mobile-hint">Swipe sideways to explore the timeline.</p>
     </div>
 </section>
 

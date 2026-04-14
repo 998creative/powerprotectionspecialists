@@ -844,6 +844,134 @@
     });
   };
 
+  const initAboutTimeline = () => {
+    const timelines = Array.from(document.querySelectorAll('[data-about-timeline]'));
+
+    timelines.forEach((timeline) => {
+      if (!(timeline instanceof HTMLElement)) {
+        return;
+      }
+
+      const items = Array.from(timeline.querySelectorAll('[data-about-timeline-item]'));
+      const mediaItems = Array.from(timeline.querySelectorAll('[data-about-media-item]'));
+      const dateLabel = timeline.querySelector('[data-about-media-date]');
+      const titleLabel = timeline.querySelector('[data-about-media-title]');
+
+      if (items.length === 0 || mediaItems.length === 0) {
+        return;
+      }
+
+      const getText = (node, selector) => {
+        if (!(node instanceof HTMLElement)) {
+          return '';
+        }
+        const target = node.querySelector(selector);
+        return target instanceof HTMLElement ? target.textContent?.trim() ?? '' : '';
+      };
+
+      const setActive = (index) => {
+        items.forEach((item) => {
+          if (!(item instanceof HTMLElement)) {
+            return;
+          }
+          const itemIndex = Number(item.getAttribute('data-about-index'));
+          item.classList.toggle('is-active', itemIndex === index);
+        });
+
+        mediaItems.forEach((mediaItem) => {
+          if (!(mediaItem instanceof HTMLElement)) {
+            return;
+          }
+          const mediaIndex = Number(mediaItem.getAttribute('data-about-media-index'));
+          mediaItem.classList.toggle('is-active', mediaIndex === index);
+        });
+
+        const activeItem = items.find((item) => {
+          if (!(item instanceof HTMLElement)) {
+            return false;
+          }
+          return Number(item.getAttribute('data-about-index')) === index;
+        });
+
+        if (activeItem instanceof HTMLElement) {
+          if (dateLabel instanceof HTMLElement) {
+            dateLabel.textContent = getText(activeItem, 'p');
+          }
+          if (titleLabel instanceof HTMLElement) {
+            titleLabel.textContent = getText(activeItem, 'h3');
+          }
+        }
+      };
+
+      items.forEach((item) => {
+        if (!(item instanceof HTMLElement)) {
+          return;
+        }
+
+        const index = Number(item.getAttribute('data-about-index'));
+        if (Number.isNaN(index)) {
+          return;
+        }
+
+        item.addEventListener('mouseenter', () => setActive(index));
+        item.addEventListener('focus', () => setActive(index));
+        item.addEventListener('click', () => setActive(index));
+      });
+
+      let observer = null;
+      const syncObserver = () => {
+        if (observer instanceof IntersectionObserver) {
+          observer.disconnect();
+          observer = null;
+        }
+
+        if (!window.matchMedia('(min-width: 1024px)').matches) {
+          return;
+        }
+
+        observer = new IntersectionObserver(
+          (entries) => {
+            let nextIndex = null;
+            let bestRatio = -1;
+
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting || !(entry.target instanceof HTMLElement)) {
+                return;
+              }
+              const index = Number(entry.target.getAttribute('data-about-index'));
+              if (Number.isNaN(index)) {
+                return;
+              }
+
+              if (entry.intersectionRatio > bestRatio) {
+                bestRatio = entry.intersectionRatio;
+                nextIndex = index;
+              }
+            });
+
+            if (nextIndex !== null) {
+              setActive(nextIndex);
+            }
+          },
+          {
+            threshold: [0.2, 0.4, 0.6, 0.8],
+            rootMargin: '-18% 0px -42% 0px',
+          }
+        );
+
+        items.forEach((item) => {
+          if (item instanceof HTMLElement) {
+            observer.observe(item);
+          }
+        });
+      };
+
+      setActive(0);
+      syncObserver();
+      window.addEventListener('resize', syncObserver);
+    });
+  };
+
   const initWhyUsStackCards = () => {
     const stacks = Array.from(document.querySelectorAll('[data-why-stack]'));
 
@@ -951,5 +1079,6 @@
   initHomeContactForm();
   initManuals();
   initFooterAccordion();
+  initAboutTimeline();
   initWhyUsStackCards();
 })();
