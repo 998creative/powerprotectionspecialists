@@ -2669,8 +2669,7 @@ body.pps-site .pps-footer h4 {
 
 .pps-about-cards {
   position: relative;
-  overflow-x: hidden;
-  overflow-y: visible;
+  overflow: visible;
   border-bottom: 1px solid #d9e1f1;
   background: #fff;
 }
@@ -2775,8 +2774,16 @@ body.page-about .pps-about-cards .pps-card-grid {
 
 body.page-about .pps-about-cards .pps-card {
   position: static !important;
+  overflow: visible !important;
   transform: none !important;
   opacity: 1 !important;
+}
+
+body.page-about .pps-about-cards,
+body.page-about .pps-about-cards .pps-container,
+body.page-about .pps-about-cards .pps-about-cards-desktop-grid {
+  overflow: visible !important;
+  overscroll-behavior: auto !important;
 }
 
 .pps-about-timeline {
