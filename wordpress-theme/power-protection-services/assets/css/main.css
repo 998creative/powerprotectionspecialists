@@ -2669,7 +2669,8 @@ body.pps-site .pps-footer h4 {
 
 .pps-about-cards {
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: visible;
   border-bottom: 1px solid #d9e1f1;
   background: #fff;
 }
