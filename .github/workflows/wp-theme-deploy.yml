@@ -38,10 +38,43 @@ jobs:
           test -n "$WP_DEPLOY_URL"
           test -n "$WP_DEPLOY_TOKEN"
           THEME_SLUG="${WP_THEME_SLUG:-power-protection-services}"
+          RESPONSE_BODY="$(mktemp)"
+          MAX_ATTEMPTS=5
+          ATTEMPT=1
 
-          curl --fail --show-error --silent \
-            -X POST "$WP_DEPLOY_URL" \
-            -H "x-wp-deploy-token: $WP_DEPLOY_TOKEN" \
-            -F "theme_slug=${THEME_SLUG}" \
-            -F "commit_sha=${GITHUB_SHA}" \
-            -F "theme_zip=@wordpress-theme/theme.zip;type=application/zip"
+          while [ "$ATTEMPT" -le "$MAX_ATTEMPTS" ]; do
+            echo "Deploy attempt ${ATTEMPT}/${MAX_ATTEMPTS}"
+
+            HTTP_CODE="$(
+              curl --silent --show-error \
+                --output "$RESPONSE_BODY" \
+                --write-out "%{http_code}" \
+                -X POST "$WP_DEPLOY_URL" \
+                -H "x-wp-deploy-token: $WP_DEPLOY_TOKEN" \
+                -H "User-Agent: pps-theme-deployer/${GITHUB_SHA}" \
+                -F "theme_slug=${THEME_SLUG}" \
+                -F "commit_sha=${GITHUB_SHA}" \
+                -F "theme_zip=@wordpress-theme/theme.zip;type=application/zip" \
+                || true
+            )"
+
+            if [ "$HTTP_CODE" -ge 200 ] 2>/dev/null && [ "$HTTP_CODE" -lt 300 ] 2>/dev/null; then
+              echo "Deploy succeeded with HTTP ${HTTP_CODE}."
+              cat "$RESPONSE_BODY" || true
+              exit 0
+            fi
+
+            echo "Deploy failed with HTTP ${HTTP_CODE}."
+            cat "$RESPONSE_BODY" || true
+
+            if [ "$ATTEMPT" -lt "$MAX_ATTEMPTS" ]; then
+              SLEEP_SECONDS=$((ATTEMPT * 5))
+              echo "Retrying in ${SLEEP_SECONDS}s..."
+              sleep "$SLEEP_SECONDS"
+            fi
+
+            ATTEMPT=$((ATTEMPT + 1))
+          done
+
+          echo "Deployment failed after ${MAX_ATTEMPTS} attempts."
+          exit 1
