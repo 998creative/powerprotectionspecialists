@@ -2435,13 +2435,14 @@ img {
   padding-block: 72px 64px;
 }
 
-.pps-footer h4 {
+body.pps-site .pps-footer h4 {
   margin: 0 0 16px;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  font-size: 12px;
+  font-size: 0.75rem;
   line-height: 1rem;
   font-weight: 400;
+  font-family: 'Poppins', sans-serif;
   color: #a1a1aa;
 }
 
