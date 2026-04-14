@@ -1386,7 +1386,11 @@ img {
 }
 
 .pps-home-about-media-frame {
-  display: none;
+  position: absolute;
+  inset: 28px;
+  border: 1px solid #dce4f2;
+  border-radius: 14px;
+  pointer-events: none;
 }
 
 .pps-home-about-media-wrap img {
@@ -3176,6 +3180,10 @@ img {
 
   .pps-home-about-media-wrap {
     padding: 12px;
+  }
+
+  .pps-home-about-media-frame {
+    inset: 20px;
   }
 
 }
