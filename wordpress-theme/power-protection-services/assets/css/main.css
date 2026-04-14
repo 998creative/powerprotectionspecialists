@@ -1390,6 +1390,7 @@ img {
   inset: 28px;
   border: 1px solid #dce4f2;
   border-radius: 14px;
+  opacity: 0.75;
   pointer-events: none;
 }
 
