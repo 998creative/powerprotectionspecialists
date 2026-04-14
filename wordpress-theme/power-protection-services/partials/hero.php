@@ -19,6 +19,17 @@ $title = isset($hero_args['title']) ? (string) $hero_args['title'] : '';
 $description = isset($hero_args['description']) ? (string) $hero_args['description'] : '';
 $hero_background = isset($hero_args['hero_background']) ? (string) $hero_args['hero_background'] : '';
 $hero_actions = isset($hero_args['hero_actions']) && is_array($hero_args['hero_actions']) ? $hero_args['hero_actions'] : [];
+
+if ($title === '') {
+    $title = pps_page_heading('Power Protection Services');
+}
+
+if ($description === '') {
+    $fallback_excerpt = get_the_excerpt();
+    if (is_string($fallback_excerpt) && $fallback_excerpt !== '') {
+        $description = $fallback_excerpt;
+    }
+}
 ?>
 <section class="pps-hero<?php echo $hero_background !== '' ? ' pps-hero-has-bg' : ''; ?>">
     <?php if ($hero_background !== '') : ?>

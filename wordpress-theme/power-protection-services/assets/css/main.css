@@ -41,6 +41,11 @@ body {
   overflow-y: visible;
 }
 
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
 body.pps-site {
   background: var(--pps-bg);
   color: var(--pps-text);
@@ -49,8 +54,6 @@ body.pps-site {
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-  font-synthesis-weight: none;
   line-height: 1.5;
   overflow-x: clip;
 }
@@ -658,6 +661,11 @@ img {
   font-size: var(--pps-type-heading);
   line-height: 1.2;
   color: inherit;
+}
+
+.pps-section h2 + .pps-section-intro,
+.pps-section h2 + p {
+  margin-top: 28px;
 }
 
 .pps-section-intro {
