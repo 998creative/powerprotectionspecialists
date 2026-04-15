@@ -1850,7 +1850,7 @@ img {
   margin-bottom: 2.5rem;
   width: 100%;
   overflow: hidden;
-  padding: 2.5rem 0;
+  padding: 1.25rem 0;
 }
 
 .pps-home-client-track {
@@ -1885,8 +1885,8 @@ img {
 }
 
 .pps-home-client-logo {
-  width: 160px;
-  height: 48px;
+  width: 240px;
+  height: 72px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1896,14 +1896,14 @@ img {
 .pps-home-client-logo img {
   width: auto;
   height: auto;
-  max-height: 36px;
+  max-height: 54px;
   opacity: 0.5;
   object-fit: contain;
 }
 
 .pps-home-client-logo img[src*="kingspan.png"],
 .pps-home-client-logo img[src*="university-of-essex.png"] {
-  max-height: 44px;
+  max-height: 66px;
 }
 
 .pps-home-testimonials {
@@ -2351,8 +2351,8 @@ img {
 
   .pps-home-client-marquee {
     margin-bottom: 3rem;
-    padding-top: 3.5rem;
-    padding-bottom: 3.5rem;
+    padding-top: 1.75rem;
+    padding-bottom: 1.75rem;
   }
 }
 
