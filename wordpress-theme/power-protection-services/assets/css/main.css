@@ -3269,6 +3269,7 @@ body.page-about .pps-hero {
 
 .pps-map-section {
   border-top: 1px solid #d9e1f1;
+  background: #fff;
 }
 
 .pps-map-section .pps-eyebrow {
@@ -3295,11 +3296,14 @@ body.page-about .pps-hero {
   overflow: hidden;
   border-radius: 16px;
   border: 1px solid #d6dff0;
-  background: #f8fbff;
+  background: #fff;
+  line-height: 0;
   box-shadow: 0 16px 35px rgba(12, 18, 32, 0.12);
 }
 
 .pps-map-wrap iframe {
+  display: block;
+  vertical-align: top;
   width: 100%;
   border: 0;
   height: 520px;
