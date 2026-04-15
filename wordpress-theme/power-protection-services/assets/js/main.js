@@ -983,7 +983,7 @@
     const mobileCardOffset = 20;
     const mobileCardStartY = 520;
     const mobileIntroStartY = 120;
-    const mobileIntroDelay = 0.55;
+    const mobileIntroDelay = 0.82;
     let ticking = false;
 
     const updateStacks = () => {
