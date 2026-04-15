@@ -3082,7 +3082,7 @@ body.page-about .pps-hero {
     width: calc(
       (var(--pps-timeline-count, 1) * var(--pps-timeline-card-width)) +
       ((var(--pps-timeline-count, 1) - 1) * 24px) -
-      48px
+      24px
     );
   }
 
@@ -3109,7 +3109,7 @@ body.page-about .pps-hero {
   }
 
   .pps-about-timeline-list li:last-child::before {
-    left: calc(100% - 32px);
+    left: calc(100% - 8px);
     transform: none;
   }
 
@@ -3777,7 +3777,7 @@ body.page-about .pps-hero {
     width: calc(
       (var(--pps-timeline-count, 1) * var(--pps-timeline-card-width)) +
       ((var(--pps-timeline-count, 1) - 1) * 24px) -
-      48px
+      24px
     );
   }
 
