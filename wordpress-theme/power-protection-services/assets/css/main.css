@@ -3577,7 +3577,7 @@ body.page-about .pps-hero {
   }
 
   .pps-about-cards .pps-section-intro {
-    margin-top: 40px;
+    margin-top: 56px;
   }
 
   .pps-about-cards-desktop-copy,
@@ -3607,11 +3607,11 @@ body.page-about .pps-hero {
     margin-top: 18px;
     position: relative;
     width: 100%;
-    height: 21.75rem;
+    height: 20.25rem;
   }
 
   .pps-about-cards-mobile-card.pps-support-card {
-    padding: 22px 20px 18px;
+    padding: 20px 18px 16px;
   }
 
   .pps-about-cards-mobile-card {
