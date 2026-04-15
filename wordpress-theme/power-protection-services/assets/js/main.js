@@ -982,6 +982,7 @@
     const isMobileViewport = () => window.matchMedia('(max-width: 767px)').matches;
     const mobileCardOffset = 20;
     const mobileCardStartY = 520;
+    const mobileIntroStartY = 120;
     let ticking = false;
 
     const updateStacks = () => {
@@ -993,6 +994,11 @@
         const stage = stack.querySelector('[data-why-stack-stage]');
         const track = stack.querySelector('[data-why-stack-track]');
         const cards = Array.from(stack.querySelectorAll('[data-why-card]'));
+        const stackContainer = stack.parentElement;
+        const aboutIntro =
+          stackContainer instanceof HTMLElement
+            ? stackContainer.querySelector('[data-about-stack-intro]')
+            : null;
 
         if (
           !(stage instanceof HTMLElement) ||
@@ -1012,6 +1018,11 @@
             card.style.opacity = '1';
             card.style.zIndex = String(index + 1);
           });
+
+          if (aboutIntro instanceof HTMLElement) {
+            aboutIntro.style.transform = 'translateY(0)';
+            aboutIntro.style.opacity = '1';
+          }
           return;
         }
 
@@ -1063,6 +1074,22 @@
           card.style.opacity = String(opacity);
           card.style.zIndex = String(index + 1);
         });
+
+        if (aboutIntro instanceof HTMLElement && cards.length > 1) {
+          const lastCardEnterStart = cards.length - 2;
+          const lastCardEnterEnd = cards.length - 1;
+          let revealProgress = 1;
+
+          if (mobileProgress <= lastCardEnterStart) {
+            revealProgress = 0;
+          } else if (mobileProgress < lastCardEnterEnd) {
+            revealProgress = mobileProgress - lastCardEnterStart;
+          }
+
+          const introTranslateY = (1 - revealProgress) * mobileIntroStartY;
+          aboutIntro.style.transform = `translateY(${introTranslateY}px)`;
+          aboutIntro.style.opacity = String(Math.min(1, revealProgress * 1.8));
+        }
       });
     };
 

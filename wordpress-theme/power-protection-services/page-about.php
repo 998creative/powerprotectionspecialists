@@ -178,7 +178,7 @@ get_template_part('partials/hero', null, [
                 aria-hidden="true"
             ></div>
         </div>
-        <p class="pps-section-intro">
+        <p class="pps-section-intro" data-about-stack-intro>
             Our customers include universities, hospitals, city and county councils, corporate organisations, electrical contractors, IT resellers, project management companies and consultants. Our goal is always the same: the highest level of service and support by combining practical expertise with dedicated care.
         </p>
     </div>
