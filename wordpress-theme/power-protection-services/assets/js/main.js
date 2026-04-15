@@ -983,7 +983,7 @@
     const mobileCardOffset = 20;
     const mobileCardStartY = 520;
     const mobileIntroStartY = 120;
-    const mobileIntroDelay = 0.82;
+    const mobileIntroDelay = 2.0;
     let ticking = false;
 
     const updateStacks = () => {
@@ -1075,6 +1075,7 @@
         if (aboutIntro instanceof HTMLElement && cards.length > 1) {
           const lastCardEnterStart = cards.length - 2;
           const lastCardEnterEnd = cards.length - 1;
+          const introDelay = Math.min(0.98, Math.max(0, mobileIntroDelay));
           let revealProgress = 1;
 
           if (mobileProgress <= lastCardEnterStart) {
@@ -1083,7 +1084,7 @@
             const lastCardPhase = mobileProgress - lastCardEnterStart;
             revealProgress = Math.max(
               0,
-              Math.min(1, (lastCardPhase - mobileIntroDelay) / (1 - mobileIntroDelay))
+              Math.min(1, (lastCardPhase - introDelay) / (1 - introDelay))
             );
           }
 
