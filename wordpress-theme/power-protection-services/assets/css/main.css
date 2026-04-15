@@ -2848,7 +2848,7 @@ body.page-about .pps-hero {
 .pps-about-timeline-list li::before {
   content: '';
   position: absolute;
-  left: -49px;
+  left: -48px;
   top: 4px;
   width: 16px;
   height: 16px;
@@ -3043,15 +3043,18 @@ body.page-about .pps-hero {
   }
 
   .pps-about-timeline-list {
+    --pps-timeline-card-width: calc(100vw - 72px);
+    --pps-timeline-first-dot-center: 58px;
     position: relative;
     display: flex;
     gap: 16px;
     margin: 0 -24px;
-    padding: 52px 24px 8px;
+    padding: 52px 24px 20px 30px;
     border-left: 0;
     overflow-x: auto;
-    overflow-y: hidden;
+    overflow-y: visible;
     scroll-snap-type: x mandatory;
+    scroll-padding-left: 30px;
     touch-action: pan-x;
     overscroll-behavior-y: contain;
     scrollbar-width: none;
@@ -3065,21 +3068,21 @@ body.page-about .pps-hero {
   .pps-about-timeline-list::before {
     content: '';
     position: absolute;
-    left: 36px;
+    left: var(--pps-timeline-first-dot-center);
     right: auto;
     top: 26px;
     bottom: auto;
     height: 2px;
     background: #d3dced;
     width: calc(
-      (var(--pps-timeline-count, 1) * (100vw - 72px)) +
+      (var(--pps-timeline-count, 1) * var(--pps-timeline-card-width)) +
       ((var(--pps-timeline-count, 1) - 1) * 16px) -
-      24px
+      40px
     );
   }
 
   .pps-about-timeline-list li {
-    flex: 0 0 calc(100vw - 72px);
+    flex: 0 0 var(--pps-timeline-card-width);
     min-height: 18rem;
     padding: 24px;
     border: 1px solid #d6dff0;
@@ -3116,8 +3119,11 @@ body.page-about .pps-hero {
 
 @media (max-width: 640px) {
   .pps-about-timeline-list {
+    --pps-timeline-card-width: calc(100vw - 56px);
+    --pps-timeline-first-dot-center: 52px;
     margin: 0 -18px;
-    padding-inline: 18px;
+    padding: 52px 18px 20px 24px;
+    scroll-padding-left: 24px;
   }
 
   .pps-about-timeline-list li {
@@ -3762,11 +3768,11 @@ body.page-about .pps-hero {
 
 @media (max-width: 640px) {
   .pps-about-timeline-list::before {
-    left: 30px;
+    left: var(--pps-timeline-first-dot-center);
     width: calc(
-      (var(--pps-timeline-count, 1) * (100vw - 56px)) +
+      (var(--pps-timeline-count, 1) * var(--pps-timeline-card-width)) +
       ((var(--pps-timeline-count, 1) - 1) * 16px) -
-      20px
+      40px
     );
   }
 
