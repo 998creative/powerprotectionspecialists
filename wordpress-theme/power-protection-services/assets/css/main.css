@@ -3049,17 +3049,17 @@ body.page-about .pps-hero {
 
   .pps-about-timeline-list {
     --pps-timeline-card-width: calc(100vw - 48px);
-    --pps-timeline-first-dot-center: 20px;
+    --pps-timeline-first-dot-center: 8px;
     position: relative;
     display: flex;
     gap: 16px;
-    margin: 0 -12px;
-    padding: 52px 12px 52px;
+    margin: 0;
+    padding: 52px 0 52px;
     border-left: 0;
     overflow-x: auto;
     overflow-y: visible;
     scroll-snap-type: x mandatory;
-    scroll-padding-inline: 12px;
+    scroll-padding-inline: 0;
     touch-action: pan-x;
     overscroll-behavior-y: contain;
     scrollbar-width: none;
@@ -3082,7 +3082,7 @@ body.page-about .pps-hero {
     width: calc(
       (var(--pps-timeline-count, 1) * var(--pps-timeline-card-width)) +
       ((var(--pps-timeline-count, 1) - 1) * 16px) -
-      20px
+      16px
     );
   }
 
@@ -3109,7 +3109,7 @@ body.page-about .pps-hero {
   }
 
   .pps-about-timeline-list li:last-child::before {
-    left: calc(100% - 20px);
+    left: calc(100% - 16px);
     transform: none;
   }
 
@@ -3125,10 +3125,10 @@ body.page-about .pps-hero {
 @media (max-width: 640px) {
   .pps-about-timeline-list {
     --pps-timeline-card-width: calc(100vw - 48px);
-    --pps-timeline-first-dot-center: 20px;
-    margin: 0 -12px;
-    padding: 52px 12px 52px;
-    scroll-padding-inline: 12px;
+    --pps-timeline-first-dot-center: 8px;
+    margin: 0;
+    padding: 52px 0 52px;
+    scroll-padding-inline: 0;
   }
 
   .pps-about-timeline-list li {
@@ -3777,7 +3777,7 @@ body.page-about .pps-hero {
     width: calc(
       (var(--pps-timeline-count, 1) * var(--pps-timeline-card-width)) +
       ((var(--pps-timeline-count, 1) - 1) * 16px) -
-      20px
+      16px
     );
   }
 
