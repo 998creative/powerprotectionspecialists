@@ -3082,7 +3082,7 @@ body.page-about .pps-hero {
     width: calc(
       (var(--pps-timeline-count, 1) * var(--pps-timeline-card-width)) +
       ((var(--pps-timeline-count, 1) - 1) * 24px) -
-      24px
+      8px
     );
   }
 
@@ -3777,7 +3777,7 @@ body.page-about .pps-hero {
     width: calc(
       (var(--pps-timeline-count, 1) * var(--pps-timeline-card-width)) +
       ((var(--pps-timeline-count, 1) - 1) * 24px) -
-      24px
+      8px
     );
   }
 
